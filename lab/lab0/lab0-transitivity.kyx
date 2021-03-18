@@ -1,0 +1,28 @@
+/**
+ * Running time (in minutes, estimate):
+ * Proved? (Y/N):
+ * KeYmaera X Version:
+ * lab0-transitivity.kyx
+ * This theorem should quickly and automatically verify using KeYmaera X.
+ * Fill in the solution, save and submit.
+ *
+ * Please do not put personally identifiable information in any file that you
+ * submit. Any resulting implicit bias can and will be used against your grade.
+ */
+
+ProgramVariables
+  Real x;
+  Real y;
+  Real z;
+End.
+
+Problem
+/* Solution goes here */
+  \forall x (
+      \forall y (
+          \forall z (
+              x > y & y > z
+              ->
+              x > z
+              )))
+End.

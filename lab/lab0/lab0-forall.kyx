@@ -1,0 +1,18 @@
+/**
+ * Running time (in minutes, estimate):
+ * Proved? (Y/N):
+ * KeYmaera X Version:
+ * lab0-forall.kyx
+ * This theorem should automatically verify using the KeYmaera X master tactic.
+ *
+ * Please do not put personally identifiable information in any file that you
+ * submit. Any resulting implicit bias can and will be used against your grade.
+ */
+
+ProgramVariables
+  Real x;
+End.
+
+Problem
+  \forall x (x > 0 & x < 1)
+End.

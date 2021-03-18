@@ -1,0 +1,32 @@
+/**
+ * Running time (in minutes, estimate):
+ * Proved? (Y/N):
+ * KeYmaera X Version:
+ * lab0.kyx
+ * This theorem should automatically verify using the KeYmaera X master tactic.
+ *
+ * Please do not put personally identifiable information in any file that you
+ * submit. Any resulting implicit bias can and will be used against your grade.
+ */
+
+Functions
+  Real A;
+  Real B;
+  Real S;
+  Real ep;
+End.
+
+ProgramVariables
+  Real x;
+  Real v;
+  Real a;
+  Real c;
+End.
+
+Problem
+    v > 0 & a > 0
+ -> [ a := a + A^2;
+      {a := a + (A - 1)^2 + (A - 2)^4;}*@invariant(a > 0)
+      {{v' = a & v >= 0}@invariant(a > 0 & v > 0)}
+    ] v > 0
+End.
