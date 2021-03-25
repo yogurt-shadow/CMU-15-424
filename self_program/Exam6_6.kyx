@@ -1,0 +1,14 @@
+ProgramVariables
+  Real x, d;
+End.
+
+Problem
+\forall d (
+  d >= -x
+  ->
+  [
+    x := 0; ++ x := x + d;
+  ] x >= 0
+)
+
+End.

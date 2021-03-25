@@ -1,0 +1,18 @@
+﻿/* Exported from KeYmaera X v4.9.3 */
+
+Theorem "Exam6_4"
+ProgramVariables
+  Real a, b;
+End.
+
+Problem
+\forall x !(a * x + b = 0)
+<->
+a = 0 & !b = 0
+End.
+
+Tactic "Exam6_4: Proof"
+auto
+End.
+
+End.

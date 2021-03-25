@@ -1,0 +1,14 @@
+ProgramVariables
+  Real x, d;
+End.
+
+Problem
+x >= 0
+->
+\exists d (
+  d >= 0 &
+  [
+    x := 0; ++ x := x + d;
+  ] x >= 0
+)
+End.

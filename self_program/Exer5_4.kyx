@@ -1,0 +1,12 @@
+ProgramVariables
+  Real x, v;
+End.
+
+Problem
+x >= 0
+->
+[
+  {v := 1;}
+  {{v := v + 1;} ++ {x' = v}}
+] x >= 0
+End.

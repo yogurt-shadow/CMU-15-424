@@ -1,0 +1,9 @@
+ProgramVariables
+  Real a, b;
+End.
+
+Problem
+\forall x !(a * x + b = 0)
+<->
+a = 0 & !b = 0
+End.
