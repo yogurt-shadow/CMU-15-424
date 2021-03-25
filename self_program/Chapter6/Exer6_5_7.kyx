@@ -1,0 +1,19 @@
+ProgramVariables
+  Real x;
+End.
+
+Problem
+x * x >= 100
+->
+[
+  {
+    {? x > 0;}
+    {x' = 2}
+  }
+  ++
+  {
+    {? x < 0;}
+    {x' = -2}
+  }
+] x * x >= 100
+End.
