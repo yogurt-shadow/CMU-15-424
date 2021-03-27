@@ -305,28 +305,30 @@ class L1Q4 {
 	System.out.println();
 	// Forall
 	System.out.println("---------Forall Test---------");
-
-	System.out.println();
 	Formula forall1 = new Forall("y", new GreaterEqual(new Times(y, y), new Number(0.0)));
 	Formula forall2 = new Forall("y", new Equal(new Times(y, y), new Number(1.0)));
-	System.out.println(empty.size());
+	System.out.println("size: " + empty.size());
 
 	System.out.println("forall y, (y * y >= 0) = " + Interpreter.interpret(empty, forall1));
-	System.out.println(empty.size());
+	System.out.println("size: " + empty.size());
 
 	System.out.println("forall y, (y * y = 1) = " + Interpreter.interpret(empty, forall2));
-	System.out.println(empty.size());
+	System.out.println("size: " + empty.size());
 	System.out.println();
 
 	// Exists
-	System.out.println("---------Forall Test---------");
+	System.out.println("---------Exists Test---------");
 	Term z = new Variable("z");
 	Formula exists1 = new Exists("y", new Equal(new Times(y, y), new Number(1.0)));
 	Formula exists2 = new Exists("z", new Equal(new Variable("z"), new Plus(x, y)));
 	Formula exists3 = new Exists("z", new Equal(new Number(-1), new Times(z, z)));
-	System.out.println("Exists y, (y * y = 1) = " + Interpreter.interpret(empty, exists1));		
+	System.out.println("size: " + empty.size());
+	System.out.println("Exists y, (y * y = 1) = " + Interpreter.interpret(empty, exists1));
+	System.out.println("size: " + empty.size());		
 	System.out.println("in state {x -> 1, y -> 2}, exists z, (z = x + y) = " + Interpreter.interpret(nonempty2, exists2));
+	System.out.println("size: " + empty.size());
 	System.out.println("in state {x -> 1, y -> 2}, exists z, (z * z = -1) = " + Interpreter.interpret(nonempty2, exists3));
+	System.out.println("size: " + empty.size());
 	System.out.println();
     }
 }
