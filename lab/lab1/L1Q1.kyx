@@ -1,0 +1,23 @@
+/**
+ * Running time (in minutes, estimate):
+ * Proved?(Y/N):
+ * KeYmaera X Version:
+ *
+ * Please do not put personally identifiable information in any file that you
+ * submit. Any resulting implicit bias can and will be used against your grade.
+ */
+
+ProgramVariables
+  Real pos;
+  Real vel;
+  Real acc;
+  Real station;
+End.
+
+Problem
+  (vel = 0 & acc >= 0)
+  ->
+  [
+    {pos' = vel, vel' = acc}
+  ] (vel >= 0)
+End.

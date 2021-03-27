@@ -1,0 +1,40 @@
+﻿/* Exported from KeYmaera X v4.9.3 */
+
+Theorem "L1Q3"
+/**
+ * Running time (in minutes, estimate):
+ * Proved?(Y/N):
+ * KeYmaera X Version:
+ *
+ * Please do not put personally identifiable information in any file that you
+ * submit. Any resulting implicit bias can and will be used against your grade.
+ */
+
+ProgramVariables
+  Real pos;
+  Real vel;
+  Real acc;
+  Real station;
+  Real t;
+  Real T;
+End.
+
+Problem
+  (pos < station & vel = 0 & T > 0)
+  ->
+  [
+     t := 0;
+     acc := (station - pos) / T ^ 2;           /* make sure after at most T time, the robot can not arrive at the station. */
+     {pos' = vel, vel' = acc, t' = 1 & vel >= 0 & t <= T};
+     ?(t > 0);
+     acc := - vel ^ 2 / (2 * (station - pos));
+     {pos' = vel, vel' = acc, t' = 1 & vel >= 0}
+  ]
+  ((vel = 0 -> pos <= station) & (vel = 0 -> pos >= station))
+End.
+
+Tactic "L1Q3: Proof"
+auto
+End.
+
+End.
