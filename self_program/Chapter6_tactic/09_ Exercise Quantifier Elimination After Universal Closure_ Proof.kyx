@@ -1,0 +1,24 @@
+﻿/* Exported from KeYmaera X v4.9.3 */
+
+Exercise "09: Exercise Quantifier Elimination After Universal Closure"
+Description "6.5.1: Real Quantifier Elimination".
+
+ProgramVariables /* program variables may change their value over time */
+  Real x;
+End.
+
+Problem
+  x>=0 -> \exists d (d>=0 & [x:=0; ++ x:=x+d;]x>=0)
+End.
+
+Tactic "09: Exercise Quantifier Elimination After Universal Closure: Proof"
+implyR(1) ; existsR("2", 1) ; andR(1) ; <(
+  QE,
+  choiceb(1) ; andR(1) ; <(
+    assignb(1) ; QE,
+    assignb(1) ; QE
+    )
+  )
+End.
+
+End.

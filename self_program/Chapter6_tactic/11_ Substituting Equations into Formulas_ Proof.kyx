@@ -1,0 +1,20 @@
+﻿/* Exported from KeYmaera X v4.9.3 */
+
+Theorem "11: Substituting Equations into Formulas"
+Description "6.5.5: Substituting Equations into Formulas".
+
+Definitions
+  Real x;
+  Real e;
+  Bool p(Real x);
+End.
+
+Problem
+  x=e & p(e) -> p(x)
+End.
+
+Tactic "11: Substituting Equations into Formulas: Proof"
+implyR(1) ; andL(-1) ; allR2L(-1) ; id
+End.
+
+End.

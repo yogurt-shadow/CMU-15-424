@@ -1,0 +1,22 @@
+﻿/* Exported from KeYmaera X v4.9.3 */
+
+Theorem "12: Abbreviating Terms to Reduce Complexity"
+Description "6.5.6: Abbreviating Terms to Reduce Complexity".
+
+Definitions /* function symbols cannot change their value */
+  Real a;
+  Real d; 
+  Real t; 
+  Real v; 
+  Real x;
+End.
+
+Problem
+  a>=0 & t>=0 & 0 <= a/2*t^2 + v*t + x & a/2*t^2 + v*t + x <= d & d<=8 -> a/2*t^2 + v*t + x <= 8
+End.
+
+Tactic "12: Abbreviating Terms to Reduce Complexity: Proof"
+implyR(1) ; andL(-1) ; andL(-2) ; andL(-3) ; andL(-4) ; hideL(-3=="0<=a()/2*t()^2+v()*t()+x()") ; hideL(-2=="t()>=0") ; hideL(-1=="a()>=0") ; QE
+End.
+
+End.

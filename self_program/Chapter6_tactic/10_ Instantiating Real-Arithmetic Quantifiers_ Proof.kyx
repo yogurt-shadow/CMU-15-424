@@ -1,0 +1,24 @@
+﻿/* Exported from KeYmaera X v4.9.3 */
+
+Theorem "10: Instantiating Real-Arithmetic Quantifiers"
+Description "6.5.2: Instantiating Real-Arithmetic Quantifiers".
+
+Definitions /* function symbols cannot change their value */
+  Real t_0; /* names with optional index */
+  Real x_0;
+End.  
+
+ProgramVariables /* program variables may change their value over time */
+  Real t;
+  Real x;
+End.
+
+Problem
+  x_0=x & t_0=t -> [{x'=-2, t'=1 & x>=0}](t-t_0 = (x_0-x)/2)
+End.
+
+Tactic "10: Instantiating Real-Arithmetic Quantifiers: Proof"
+implyR(1) ; andL(-1) ; solve(1) ; allR(1) ; implyR(1) ; implyR(1) ; allL("t", -4) ; QE
+End.
+
+End.

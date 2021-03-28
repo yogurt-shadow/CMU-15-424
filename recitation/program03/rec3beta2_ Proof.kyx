@@ -1,0 +1,25 @@
+﻿/* Exported from KeYmaera X v4.9.3 */
+
+Theorem "rec3beta2"
+
+ProgramVariables
+  Real a;
+  Real v;
+  Real x;
+End.
+
+Problem
+  a=1 & v>0 -> [{x'=v,v'=a & v>=0};?v=0;]x!=5
+End.
+
+Tactic "rec3beta2: Proof"
+implyR(1) ; andL(-1) ; composeb(1) ; solve(1) ; allR(1) ; implyR(1) ; implyR(1) ; allL("t_", -4) ; implyL(-4) ; <(
+  hideR(1=="[?a*(0+1*t_-0)+v=0;]a*(t_^2/2)+v*t_+x!=5") ; andR(1) ; <(
+    QE,
+    QE
+    ),
+  testb(1) ; implyR(1) ; QE
+  )
+End.
+
+End.

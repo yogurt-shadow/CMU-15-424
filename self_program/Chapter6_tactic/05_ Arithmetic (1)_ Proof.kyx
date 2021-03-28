@@ -1,0 +1,21 @@
+﻿/* Exported from KeYmaera X v4.9.3 */
+
+Theorem "05: Arithmetic (1)"
+Description "6.5: Real Arithmetic".
+
+Definitions /* function symbols cannot change their value */
+  Real a; 
+  Real b; 
+  Real x; 
+  Real y;
+End.
+
+Problem
+  a>0 & b>0 -> (y>=0 -> a*x^2 + b*y >= 0)
+End.
+
+Tactic "05: Arithmetic (1): Proof"
+QE
+End.
+
+End.

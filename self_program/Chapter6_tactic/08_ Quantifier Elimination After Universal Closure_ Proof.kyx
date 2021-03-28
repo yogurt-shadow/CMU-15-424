@@ -1,0 +1,21 @@
+﻿/* Exported from KeYmaera X v4.9.3 */
+
+Theorem "08: Quantifier Elimination After Universal Closure"
+Description "6.5.1: Real Quantifier Elimination".
+
+ProgramVariables /* program variables may change their value over time */
+  Real x;
+End.
+
+Problem
+  \forall d (d>=-x -> [x:=0; ++ x:=x+d;]x>=0)
+End.
+
+Tactic "08: Quantifier Elimination After Universal Closure: Proof"
+allR(1) ; implyR(1) ; choiceb(1) ; andR(1) ; <(
+  assignb(1) ; QE,
+  assignb(1) ; QE
+  )
+End.
+
+End.

@@ -1,0 +1,49 @@
+﻿/* Exported from KeYmaera X v4.9.3 */
+
+Theorem "01: Sequent Proof Example (Simple)"
+Description "6.2.3: Propositional Proof Rules".
+
+Definitions
+  Real v;
+  Real b;
+End.
+
+Problem
+  v^2 <= 10 & b > 0
+  ->
+  b > 0 & (!(v >= 0) | v^2 <= 10)
+End.
+
+Tactic "01: Sequent Proof Example (Simple) from tactic"
+implyR(1) ; andR(1) ; <(
+  andL(-1) ; id,
+  orR(1) ; andL(-1) ; id
+  )
+End.
+
+End./* Exported from KeYmaera X v4.9.3 */
+
+Theorem "03: Proofs with Dynamics in Sequent Calculus"
+Description "6.2.5: Proofs with Dynamics".
+
+Definitions
+    Real b;
+    Real v;
+End.
+
+ProgramVariables
+    Real a;
+    Real c;
+End.
+
+Problem
+  [
+      a := -b; c := 10;
+  ] (v^2 <= 10 & -a > 0 -> b > 0 & (!(v >= 0) | v^2 <= c))
+End.
+
+Tactic "03: Proofs with Dynamics in Sequent Calculus: Proof"
+composeb(1) ; assignb(1) ; assignb(1) ; edit("v()^2<=10&b()>0->b()>0&(!v()>=0|v()^2<=10)", 1) ; useLemma("01: Sequent Proof Example (Simple)")
+End.
+
+End.

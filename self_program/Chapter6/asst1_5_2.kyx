@@ -1,0 +1,15 @@
+ProgramVariables
+  Real x;
+  Real y;
+End.
+
+Problem
+\forall x (
+  \forall y (
+    <
+      {x' = 2};
+      {x' = -2}
+    > x = y
+  )
+)
+End.

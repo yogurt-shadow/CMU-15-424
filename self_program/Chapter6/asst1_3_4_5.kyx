@@ -1,0 +1,22 @@
+ProgramVariables
+  Real x;
+  Real v;
+  Real t;
+End.
+
+Definitions
+  Real a;
+  Real x0;
+  Real v0;
+End.
+
+Problem
+a < 0 & v0 >= 0
+->
+<
+  x := x0;
+  v := v0;
+  t := 0;
+  {x' = v, v' = a, t' = 1 & v >= 0}
+> v = 0
+End.

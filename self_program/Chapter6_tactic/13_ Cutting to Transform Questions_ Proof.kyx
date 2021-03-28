@@ -1,0 +1,23 @@
+﻿/* Exported from KeYmaera X v4.9.3 */
+
+Theorem "13: Cutting to Transform Questions"
+Description "6.5.7: Creatively Cutting Real Arithmetic to Transform Questions".
+
+Definitions /* function symbols cannot change their value */
+  Real x; 
+  Real y;
+  Bool p(Real x); /* an uninterpreted predicate with argument x */
+End.
+
+Problem
+  (x-y)^2<=0 & p(y) -> p(x)
+End.
+
+Tactic "13: Cutting to Transform Questions: Proof"
+implyR(1) ; andL(-1) ; cut("x()=y()") ; <(
+  hideL(-1=="(x()-y())^2<=0") ; allR2L(-2) ; hideL(-2=="x()=y()") ; id,
+  QE
+  )
+End.
+
+End.

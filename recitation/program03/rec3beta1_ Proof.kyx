@@ -1,0 +1,19 @@
+﻿/* Exported from KeYmaera X v4.9.3 */
+
+Theorem "rec3beta1"
+
+ProgramVariables
+  Real a;
+  Real v;
+  Real x;
+End.
+
+Problem
+  [{x'=v,v'=a&v>=0};?v=0;]v=0
+End.
+
+Tactic "rec3beta1: Proof"
+composeb(1) ; chase(1.1) ; GV(1) ; allR(1) ; implyR(1) ; id
+End.
+
+End.

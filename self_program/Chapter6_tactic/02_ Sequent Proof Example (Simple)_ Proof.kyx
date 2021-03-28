@@ -1,0 +1,26 @@
+﻿/* Exported from KeYmaera X v4.9.3 */
+
+Theorem "02: Sequent Proof Example (Simple)"
+
+Definitions
+    Real a;
+    Real c;
+    Real x;
+    Real y;
+    Real z;
+End.
+
+Problem
+  x^5 = y ^2 + 5 & a^2 > c^2
+  ->
+  a^2 > c^2 & (!(z < x^2) | x^5 = y^2 + 5)
+End.
+
+Tactic "02: Sequent Proof Example (Simple): Proof"
+implyR(1) ; andR(1) ; <(
+  andL(-1) ; id,
+  orR(1) ; andL(-1) ; id
+  )
+End.
+
+End.

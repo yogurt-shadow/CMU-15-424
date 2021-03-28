@@ -1,0 +1,37 @@
+﻿/* Exported from KeYmaera X v4.9.3 */
+
+Theorem "asst1_3_4_5"
+ProgramVariables
+  Real x;
+  Real v;
+  Real t;
+End.
+
+Definitions
+  Real a;
+  Real x0;
+  Real v0;
+End.
+
+Problem
+a < 0 & v0 >= 0
+->
+<
+  x := x0;
+  v := v0;
+  t := 0;
+  {x' = v, v' = a, t' = 1 & v >= 0}
+> v = 0
+End.
+
+Tactic "asst1_3_4_5: Proof"
+implyR(1) ; andL(-1) ; composed(1) ; composed(1.1) ; composed(1.1.1) ; solve(1.1.1.1) ; assignd(1) ; assignd(1) ; assignd(1) ; existsR("-v0()/a()", 1) ; andR(1) ; <(
+  QE,
+  andR(1) ; <(
+    allR(1) ; implyR(1) ; QE,
+    QE
+    )
+  )
+End.
+
+End.
