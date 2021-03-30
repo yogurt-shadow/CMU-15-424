@@ -1,0 +1,28 @@
+﻿/* Exported from KeYmaera X v4.9.3 */
+
+Theorem "Exer7_6_5"
+
+ProgramVariables
+    Real x, y;
+End.
+
+Problem
+  x > 2 & y >= 1
+  ->
+  [
+      {
+          {x := y;}
+          {x' = y}
+      }*   @invariant(x >= 1 & y >= 1)
+      ] x >= 1
+End.
+
+Tactic "Exer7_6_5: Proof"
+implyR(1) ; andL(-1) ; loop("x>=1&y>=1", 1) ; <(
+  QE,
+  QE,
+  composeb(1) ; assignb(1) ; solve(1) ; allR(1) ; implyR(1) ; QE
+  )
+End.
+
+End.

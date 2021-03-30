@@ -1,0 +1,28 @@
+﻿/* Exported from KeYmaera X v4.9.3 */
+
+Theorem "Exer7_6_7"
+
+
+ProgramVariables
+    Real x;
+End.
+
+Problem
+  x = -1
+  ->
+  [
+      {
+          {x' = 2}
+      }*   @invariant(x >= -1)
+      ] x >= -5
+End.
+
+Tactic "Exer7_6_7: Proof"
+implyR(1) ; loop("x>=(-1)", 1) ; <(
+  QE,
+  QE,
+  solve(1) ; allR(1) ; implyR(1) ; QE
+  )
+End.
+
+End.

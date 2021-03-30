@@ -1,0 +1,36 @@
+﻿/* Exported from KeYmaera X v4.9.3 */
+
+Theorem "Exer7_6_12"
+
+
+ProgramVariables
+    Real x, v, a;
+End.
+
+Definitions
+    Real A;
+End.
+
+Problem
+  x >= 1 & v > 0 & A > 0
+  ->
+  [
+      {
+          {a := 0; ++ a := A;}
+          {x' = v, v' = a}
+      }*  @invariant(x >= 0 & v >= 0)
+      ] x >= 0
+End.
+
+Tactic "Exer7_6_12: Proof"
+implyR(1) ; loop("x>=0&v>=0", 1) ; <(
+  QE,
+  QE,
+  composeb(1) ; choiceb(1) ; andR(1) ; <(
+    assignb(1) ; solve(1) ; allR(1) ; implyR(1) ; QE,
+    assignb(1) ; solve(1) ; allR(1) ; implyR(1) ; QE
+    )
+  )
+End.
+
+End.

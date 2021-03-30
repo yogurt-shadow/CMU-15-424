@@ -1,0 +1,32 @@
+﻿/* Exported from KeYmaera X v4.9.3 */
+
+Theorem "Exer7_6_8"
+
+ProgramVariables
+    Real x;
+End.
+
+Definitions
+    Real c;
+    Real d;
+End.
+
+Problem
+  x = 5 & c > 1 & d > -c 
+  ->
+  [
+      {
+        {x' = c + d}  
+      }*  @invariant(x >= 5 & c + d > 0)
+      ] x >= 0
+End.
+
+Tactic "Exer7_6_8: Proof"
+implyR(1) ; loop("x>=5&c()+d()>0", 1) ; <(
+  QE,
+  QE,
+  solve(1) ; allR(1) ; implyR(1) ; QE
+  )
+End.
+
+End.

@@ -1,0 +1,42 @@
+﻿/* Exported from KeYmaera X v4.9.3 */
+
+Theorem "07_2: Bouncing Ball with c != 1"
+Description "7.4: Acrophobic Bouncing Ball version 2".
+
+Definitions      /* function symbols cannot change their value */
+  Real H;        /* initial height */
+  Real g;        /* gravity */
+  Real c;        /* damping coefficient */
+End.
+
+ProgramVariables /* program variables may change their value over time */
+  Real x, v;     /* height and vertical velocity */
+End.
+
+Problem
+  (x>=0 & x=H & v=0) &
+  (g>0 & c <= 1 &c>=0)
+ ->
+  [
+    {
+      {x'=v,v'=-g&x>=0}
+      {?x=0; v:=-c*v;  ++  ?x!=0;}
+    }* 
+  ] (x>=0 & x<=H)
+End.
+
+Tactic "07_2: Bouncing Ball with c != 1: Proof"
+implyR(1) ; andL(-1) ; andL(-2) ; andL(-1) ; andL(-2) ; andL(-3) ; loop("x>=0&2*g()*(H()-x)>=v^2", 1) ; <(
+  QE,
+  QE,
+  composeb(1) ; solve(1) ; allR(1) ; implyR(1) ; implyR(1) ; allL("t_", -6) ; implyL(-6) ; <(
+    hideR(1=="\forall v (v=(-g())*t_+v_1->[?(-g())*((0+1*t_-0)^2/2)+v_1*(0+1*t_-0)+x=0;v:=-c()*v;++?(-g())*((0+1*t_-0)^2/2)+v_1*(0+1*t_-0)+x!=0;]((-g())*(t_^2/2)+v_1*t_+x>=0&2*g()*(H()-((-g())*(t_^2/2)+v_1*t_+x))>=v^2))") ; QE,
+    allR(1) ; implyR(1) ; choiceb(1) ; andR(1) ; <(
+      composeb(1) ; assignb(1.1) ; testb(1) ; implyR(1) ; QE,
+      testb(1) ; implyR(1) ; QE
+      )
+    )
+  )
+End.
+
+End.

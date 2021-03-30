@@ -1,0 +1,41 @@
+﻿/* Exported from KeYmaera X v4.9.3 */
+
+Theorem "Exer7_12"
+Description "Bouncing ball with velocity not zero initially".
+
+ProgramVariables
+    Real x, v;
+End.
+
+Definitions
+    Real H;
+    Real c;
+    Real v;
+    Real g;
+End.
+
+Problem
+ v ^ 2 <= 2 * g * H & g > 0 & c > 0 & c <= 1 & 2 * g * (H - x) = v ^ 2
+  ->
+  [
+      {
+          {x' = v, v' = -g & x >= 0};
+          {{?x = 0; v := -c * v;}
+          ++
+          {?!x = 0;}}
+      }*   @invariant(x >= 0 & 2 * g *(H - x) >= v ^ 2)
+      ]  (x >= 0 & x <= H)
+End.
+
+Tactic "Exer7_12: Proof"
+implyR(1) ; loop("x>=0&2*g()*(H()-x)>=v^2", 1) ; <(
+  QE,
+  QE,
+  composeb(1) ; solve(1) ; allR(1) ; implyR(1) ; implyR(1) ; allL("t_", -6) ; allR(1) ; implyR(1) ; choiceb(1) ; andR(1) ; <(
+    composeb(1) ; assignb(1.1) ; testb(1) ; implyR(1) ; QE,
+    testb(1) ; implyR(1) ; notL(-8) ; hideR(2=="(-g())*((0+1*t_-0)^2/2)+v_1*(0+1*t_-0)+x=0") ; QE
+    )
+  )
+End.
+
+End.

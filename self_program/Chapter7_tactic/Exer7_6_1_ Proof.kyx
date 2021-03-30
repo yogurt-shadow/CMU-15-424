@@ -1,0 +1,26 @@
+﻿/* Exported from KeYmaera X v4.9.3 */
+
+Theorem "Exer7_6_1"
+
+ProgramVariables
+    Real x;
+End.
+
+
+Problem
+  x > 1
+  ->
+  [
+      {x := x + 1;}* @invariant(x >= 0)
+      ] x >= 0
+End.
+
+Tactic "Exer7_6_1: Proof"
+implyR(1) ; loop("x>=0", 1) ; <(
+  QE,
+  id,
+  assignb(1) ; QE
+  )
+End.
+
+End.

@@ -1,0 +1,28 @@
+﻿/* Exported from KeYmaera X v4.9.3 */
+
+Theorem "Exer7_6_9"
+
+ProgramVariables
+    Real x, u;
+End.
+
+Problem
+  x = 1 & u > x
+  ->
+  [
+      {
+        x := 2;
+        {x' = x ^ 2 + u}
+      }*  @invariant(u > 0 & x >= 0)
+      ] x >= 0
+End.
+
+Tactic "Exer7_6_9: Proof"
+implyR(1) ; loop("u>0&x>=0", 1) ; <(
+  QE,
+  QE,
+  composeb(1) ; assignb(1) ; dIClose(1)
+  )
+End.
+
+End.

@@ -1,0 +1,35 @@
+﻿/* Exported from KeYmaera X v4.9.3 */
+
+Theorem "Exam7_2"
+Description "Stronger invariants".
+
+ProgramVariables 
+  Real x, y;     
+End.
+
+Problem
+  x >= 8 & y <= 5 & y >= 0 
+  ->
+  [
+      {
+         x := x + y;
+         y := x - 2 * y;
+      }* 
+      ] x >= 0
+End.
+
+Tactic "Exam7_2: Proof"
+implyR(1) ; andL(-1) ; andL(-2) ; loop("x>=y&y>=0", 1) ; <(
+  andR(1) ; <(
+    QE,
+    id
+    ),
+  QE,
+  andL(-1) ; composeb(1) ; assignb(1.1) ; assignb(1) ; andR(1) ; <(
+    QE,
+    QE
+    )
+  )
+End.
+
+End.
