@@ -1,0 +1,165 @@
+﻿/* Exported from KeYmaera X v4.9.3 */
+
+Theorem "Exer8_12"
+
+Description "2D ping-pong events".
+
+Definitions
+    Real w1, w2;
+    Real h1, h2;
+    Real gx, gy;
+    Real cx, cy;
+    Real fx, fy;
+End.
+
+ProgramVariables
+    Real x, y;
+    Real vx, vy;
+End.
+
+Problem
+  w2 > w1 & w1 > 0 & h2 > h1 & h1 > 0 & x >= 0 & x <= w2 & vx <= 0 & y >= 0 & y <= h2 & vy <= 0 & gx > 0 & gy > 0 & cx >= 0 & cx <= 1 & cy >= 0 & cy <= 1 & fx > 0 & fy > 0
+  ->
+  [
+      {
+      {
+          {x'= vx, vx' = -gx, y' = vy, vy' = -gy & (x >= 0 & x <= w2 & y >= 0 & y <= h2)}
+          ++
+          {x'= vx, vx' = -gx, y' = vy, vy' = -gy & (x >= w2 & y >= 0 & y <= h2)}
+          ++
+          {x'= vx, vx' = -gx, y' = vy, vy' = -gy & (x >= 0 & x <= w2 & y >= h2)}
+          ++
+          {x'= vx, vx' = -gx, y' = vy, vy' = -gy & (x >= w2 & y >= h2)}
+      }
+      {
+        ?x = 0; vx := - cx * vx;
+        ++
+        ?x >= w1 & x <= w2 & vx >= 0; vx := -fx * vx;
+        ++
+        ?!(x = 0 | (x >= w1 & x <= w2 & vx >= 0));
+      }
+      {
+          ?y = 0; vy := -cy * vy;
+          ++
+          ? y >= h1 & y <= h2 & vy >= 0; vy := -fy * vy;
+          ++
+          ?!(y = 0 | (y >= h1 & y <= h2 & vy >= 0));
+      }
+      }*     @invariant(x >= 0 & x <= w2 & y >= 0 & y <= h2 & (x = w2 -> vx <= 0) & (y = h2 -> vy <= 0) )
+      ](x >= 0 & x <= w2 & y >= 0 & y <= h2)
+End.
+
+Tactic "Exer8_12: Proof"
+implyR(1) ; loop("x>=0&x<=w2()&y>=0&y<=h2()&(x=w2()->vx<=0)&(y=h2()->vy<=0)", 1) ; <(
+  QE,
+  QE,
+  composeb(1) ; choiceb(1) ; andR(1) ; <(
+    ODE(1) ; ODE(1) ; composeb(1) ; choiceb(1) ; andR(1) ; <(
+      composeb(1) ; testb(1) ; implyR(1) ; assignb(1) ; choiceb(1) ; andR(1) ; <(
+        composeb(1) ; testb(1) ; implyR(1) ; assignb(1) ; QE,
+        choiceb(1) ; andR(1) ; <(
+          composeb(1) ; testb(1) ; implyR(1) ; assignb(1) ; QE,
+          testb(1) ; QE
+          )
+        ),
+      choiceb(1) ; andR(1) ; <(
+        composeb(1) ; testb(1) ; implyR(1) ; assignb(1) ; choiceb(1) ; andR(1) ; <(
+          composeb(1) ; testb(1) ; implyR(1) ; assignb(1) ; QE,
+          choiceb(1) ; andR(1) ; <(
+            composeb(1) ; testb(1) ; implyR(1) ; assignb(1) ; QE,
+            testb(1) ; QE
+            )
+          ),
+        testb(1) ; implyR(1) ; choiceb(1) ; andR(1) ; <(
+          composeb(1) ; testb(1) ; implyR(1) ; assignb(1) ; QE,
+          choiceb(1) ; andR(1) ; <(
+            composeb(1) ; testb(1) ; implyR(1) ; assignb(1) ; QE,
+            testb(1) ; QE
+            )
+          )
+        )
+      ),
+    choiceb(1) ; andR(1) ; <(
+      ODE(1) ; ODE(1) ; composeb(1) ; choiceb(1) ; andR(1) ; <(
+        composeb(1) ; testb(1) ; implyR(1) ; assignb(1) ; choiceb(1) ; andR(1) ; <(
+          composeb(1) ; testb(1) ; implyR(1) ; assignb(1) ; QE,
+          choiceb(1) ; andR(1) ; <(
+            composeb(1) ; testb(1) ; implyR(1) ; assignb(1) ; QE,
+            testb(1) ; QE
+            )
+          ),
+        choiceb(1) ; andR(1) ; <(
+          composeb(1) ; testb(1) ; implyR(1) ; assignb(1) ; choiceb(1) ; andR(1) ; <(
+            composeb(1) ; testb(1) ; implyR(1) ; assignb(1) ; QE,
+            choiceb(1) ; andR(1) ; <(
+              composeb(1) ; testb(1) ; implyR(1) ; assignb(1) ; QE,
+              testb(1) ; QE
+              )
+            ),
+          testb(1) ; implyR(1) ; choiceb(1) ; andR(1) ; <(
+            composeb(1) ; testb(1) ; implyR(1) ; assignb(1) ; QE,
+            choiceb(1) ; andR(1) ; <(
+              composeb(1) ; testb(1) ; implyR(1) ; assignb(1) ; QE,
+              testb(1) ; QE
+              )
+            )
+          )
+        ),
+      choiceb(1) ; andR(1) ; <(
+        ODE(1) ; ODE(1) ; composeb(1) ; choiceb(1) ; andR(1) ; <(
+          composeb(1) ; testb(1) ; implyR(1) ; assignb(1) ; choiceb(1) ; andR(1) ; <(
+            composeb(1) ; testb(1) ; implyR(1) ; assignb(1) ; QE,
+            choiceb(1) ; andR(1) ; <(
+              composeb(1) ; testb(1) ; implyR(1) ; assignb(1) ; QE,
+              testb(1) ; QE
+              )
+            ),
+          choiceb(1) ; andR(1) ; <(
+            composeb(1) ; testb(1) ; implyR(1) ; assignb(1) ; choiceb(1) ; andR(1) ; <(
+              composeb(1) ; testb(1) ; implyR(1) ; assignb(1) ; QE,
+              choiceb(1) ; andR(1) ; <(
+                composeb(1) ; testb(1) ; implyR(1) ; assignb(1) ; QE,
+                testb(1) ; QE
+                )
+              ),
+            testb(1) ; implyR(1) ; choiceb(1) ; andR(1) ; <(
+              composeb(1) ; testb(1) ; implyR(1) ; assignb(1) ; QE,
+              choiceb(1) ; andR(1) ; <(
+                composeb(1) ; testb(1) ; implyR(1) ; assignb(1) ; QE,
+                testb(1) ; QE
+                )
+              )
+            )
+          ),
+        ODE(1) ; ODE(1) ; composeb(1) ; choiceb(1) ; andR(1) ; <(
+          composeb(1) ; testb(1) ; implyR(1) ; assignb(1) ; choiceb(1) ; andR(1) ; <(
+            composeb(1) ; testb(1) ; implyR(1) ; assignb(1) ; QE,
+            choiceb(1) ; andR(1) ; <(
+              composeb(1) ; testb(1) ; implyR(1) ; assignb(1) ; QE,
+              testb(1) ; QE
+              )
+            ),
+          choiceb(1) ; andR(1) ; <(
+            composeb(1) ; testb(1) ; implyR(1) ; assignb(1) ; choiceb(1) ; andR(1) ; <(
+              composeb(1) ; testb(1) ; implyR(1) ; assignb(1) ; QE,
+              choiceb(1) ; andR(1) ; <(
+                composeb(1) ; testb(1) ; implyR(1) ; assignb(1) ; QE,
+                testb(1) ; QE
+                )
+              ),
+            testb(1) ; implyR(1) ; choiceb(1) ; andR(1) ; <(
+              composeb(1) ; testb(1) ; implyR(1) ; assignb(1) ; QE,
+              choiceb(1) ; andR(1) ; <(
+                composeb(1) ; testb(1) ; implyR(1) ; assignb(1) ; QE,
+                testb(1) ; QE
+                )
+              )
+            )
+          )
+        )
+      )
+    )
+  )
+End.
+
+End.

@@ -1,0 +1,63 @@
+﻿/* Exported from KeYmaera X v4.9.3 */
+
+Theorem "Exer8_11"
+
+Description "Bouncing ball with largest height not larger than 10".
+
+Definitions
+    Real g;
+    Real c;
+    Real f;
+End.
+
+ProgramVariables
+    Real x;
+    Real v;
+End.
+
+Problem
+  x >= 0 & x <= 10 & v <= 0 & c >= 0 & c <= 1 & f >= 0 & g > 0
+ ->
+ [
+     {
+      {
+       {x' = v, v' = -g & (x >= 0 & x <= 5)}
+           ++
+       {x' = v, v' = -g & (x >= 5)}
+       }
+       {
+           ?x = 0; v := - c * v;
+           ++
+           ?x >= 4 & x <= 5 & v^2 > 10 * g & v >= 0; v := -f * v;
+           ++
+           ?!(x = 0 | (x >= 4 & x <= 5 & v ^2 > 10 * g & v >= 0)); 
+       }
+     }*    @invariant(x >= 0 & x <= 10 & (x >= 5 -> v <= 0 | v ^ 2 <= 2 * g * (10 - x)))
+     ] (x >= 0 & x <= 10)
+ 
+End.
+
+Tactic "Exer8_11: Proof"
+implyR(1) ; loop("x>=0&x<=10&(x>=5->v<=0|v^2<=2*g()*(10-x))", 1) ; <(
+  QE,
+  QE,
+  composeb(1) ; choiceb(1) ; choiceb(1.0.1) ; choiceb(1.0.1.1) ; choiceb(1.1.1) ; choiceb(1.1.1.1) ; andR(1) ; <(
+    dW(1) ; andR(1) ; <(
+      composeb(1) ; assignb(1.1) ; testb(1) ; implyR(1) ; QE,
+      andR(1) ; <(
+        composeb(1) ; assignb(1.1) ; testb(1) ; implyR(1) ; QE,
+        testb(1) ; implyR(1) ; QE
+        )
+      ),
+    solve(1) ; allR(1) ; implyR(1) ; implyR(1) ; andR(1) ; <(
+      composeb(1) ; assignb(1.1) ; testb(1) ; implyR(1) ; QE,
+      andR(1) ; <(
+        composeb(1) ; assignb(1.1) ; testb(1) ; implyR(1) ; QE,
+        testb(1) ; implyR(1) ; QE
+        )
+      )
+    )
+  )
+End.
+
+End.

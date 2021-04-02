@@ -1,0 +1,77 @@
+﻿/* Exported from KeYmaera X v4.9.3 */
+
+Theorem "Exer8_13"
+
+Description "Robot chase: Prevent two robots from crashes in the same straight line".
+
+Definitions
+    Real A;
+    Real b;
+End.
+
+ProgramVariables
+    Real x1;
+    Real x2;
+    Real v1;
+    Real v2;
+    Real a1;
+    Real a2;
+End.
+
+Problem
+    x1 > x2 & x2 >= 0 & v1 >= v2 & v2 >= 0 & A > 0 & b > 0
+    ->
+    [
+        {
+        {a1 := A; ++ ? v1 > 0; a1 := -b;}
+        {? v1 > v2 | v2 = 0; a2 := A; ++ ? v2 > 0; a2 := -b; ++ ? v2 < 0;}
+        {
+        {x1' = v1, v1' = a1, x2' = v2, v2' = a2 & (v1 <= v2 & v1 >= 0 & v2 >= 0)} ++ {x1' = v1, v1' = a1, x2' = v2, v2' = a2 & (v1 >= v2 & v1 >= 0 & v2 >= 0)}
+        }
+        }*   @invariant(x1 > x2 & x2 >= 0 & v1 >= v2 & v2 >= 0)
+        ](x1 > x2 & x2 >= 0 & v1 >= 0 & v2 >= 0)
+    
+End.
+
+Tactic "Exer8_13: Proof"
+implyR(1) ; loop("x1>x2&x2>=0&v1>=v2&v2>=0", 1) ; <(
+  QE,
+  QE,
+  composeb(1) ; composeb(1.1) ; choiceb(1.1.1) ; solve(1.1.1.0) ; solve(1.1.1.1) ; choiceb(1.1) ; choiceb(1.1.1) ; choiceb(1) ; andR(1) ; <(
+    assignb(1) ; composeb(1.0) ; assignb(1.0.1) ; testb(1.0) ; andR(1) ; <(
+      implyR(1) ; andR(1) ; <(
+        allR(1) ; implyR(1) ; implyR(1) ; QE,
+        allR(1) ; implyR(1) ; implyR(1) ; QE
+        ),
+      composeb(1.0) ; assignb(1.0.1) ; testb(1.0) ; andR(1) ; <(
+        implyR(1) ; andR(1) ; <(
+          allR(1) ; implyR(1) ; implyR(1) ; QE,
+          allR(1) ; implyR(1) ; implyR(1) ; QE
+          ),
+        testb(1) ; implyR(1) ; andR(1) ; <(
+          allR(1) ; implyR(1) ; implyR(1) ; QE,
+          allR(1) ; implyR(1) ; implyR(1) ; QE
+          )
+        )
+      ),
+    composeb(1) ; assignb(1.1) ; testb(1) ; implyR(1) ; andR(1) ; <(
+      composeb(1) ; assignb(1.1) ; testb(1) ; implyR(1) ; andR(1) ; <(
+        allR(1) ; implyR(1) ; implyR(1) ; QE,
+        allR(1) ; implyR(1) ; implyR(1) ; QE
+        ),
+      andR(1) ; <(
+        composeb(1) ; assignb(1.1) ; testb(1) ; implyR(1) ; andR(1) ; <(
+          allR(1) ; implyR(1) ; implyR(1) ; QE,
+          allR(1) ; implyR(1) ; implyR(1) ; QE
+          ),
+        testb(1) ; implyR(1) ; andR(1) ; <(
+          allR(1) ; implyR(1) ; implyR(1) ; QE,
+          allR(1) ; implyR(1) ; implyR(1) ; QE
+          )
+        )
+      )
+    )
+  )
+End.
+
+End.

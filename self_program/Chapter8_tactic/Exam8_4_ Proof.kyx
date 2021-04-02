@@ -1,0 +1,42 @@
+﻿/* Exported from KeYmaera X v4.9.3 */
+
+Theorem "Exam8_4"
+Description "Event-triggered example: gurantee the bouncing ball reverse velocity when reaching height of 5".
+    
+ProgramVariables
+    Real x, v;
+End.
+
+Definitions
+    Real f;
+    Real c;
+    Real g;
+End.
+
+Problem
+  x >= 0 & x <= 5 & v <= 0 & g > 0 & c >= 0 & c <= 1 & f > 0
+  ->
+  [
+      {
+        {x' = v, v' = g & (x >= 0 & x <= 5)};
+        {{?x = 0; v := -c * v;}
+        ++
+        {?x >= 4 & x <= 5; v := -f * v;}
+        ++
+        {?!x = 0 & x < 4 | x > 5;}}
+      }*   @invariant(x >= 0 & x <= 5)
+      ](x >= 0 & x <= 5)
+End.
+
+Tactic "Exam8_4: Proof"
+implyR(1) ; loop("x>=0&x<=5", 1) ; <(
+  QE,
+  QE,
+  composeb(1) ; solve(1) ; allR(1) ; implyR(1) ; implyR(1) ; allL("t_", -8) ; implyL(-8) ; <(
+    hideR(1=="[?g()*((0+1*t_-0)^2/2)+v_0*(0+1*t_-0)+x=0;v:=-c()*(g()*(0+1*t_-0)+v_0);++?g()*((0+1*t_-0)^2/2)+v_0*(0+1*t_-0)+x>=4&g()*((0+1*t_-0)^2/2)+v_0*(0+1*t_-0)+x<=5;v:=-f()*(g()*(0+1*t_-0)+v_0);++?!g()*((0+1*t_-0)^2/2)+v_0*(0+1*t_-0)+x=0&g()*((0+1*t_-0)^2/2)+v_0*(0+1*t_-0)+x < 4|g()*((0+1*t_-0)^2/2)+v_0*(0+1*t_-0)+x>5;](g()*(t_^2/2)+v_0*t_+x>=0&g()*(t_^2/2)+v_0*t_+x<=5)") ; QE,
+    GV(1) ; QE
+    )
+  )
+End.
+
+End.

@@ -1,0 +1,36 @@
+﻿/* Exported from KeYmaera X v4.9.3 */
+
+Theorem "rec4good2"
+Description "Good controller adding v^2 <=1".
+
+Functions
+  Real l;
+  Real r;
+  Real c;
+End
+.
+ProgramVariables
+  Real v;
+  Real x;
+End.
+
+Problem
+0 <= c & c <= 1 & v^2 <= 1 & l < x & x < r->
+[{
+ {if (v^2 <= 1 & (x=l & v<=0 | x=r & v>=0)) {v:=-c*v;}}
+ {{x'=v & l <= x & x <= r} ++ {x'=v & l >= x | x >= r}}
+}*@invariant(l<=x&x<=r & v ^ 2 <= 1)](l <= x & x <= r)
+End.
+
+Tactic "rec4good2: Proof"
+unfold ; cut("l() < r()") ; <(
+  loop("l()<=x&x<=r()&v^2<=1", 1) ; <(
+    QE,
+    QE,
+    master
+    ),
+  hideR(1=="[{{?v^2<=1&(x=l()&v<=0|x=r()&v>=0);v:=-c()*v;++?!(v^2<=1&(x=l()&v<=0|x=r()&v>=0));?true;}{{x'=v&l()<=x&x<=r()}++{x'=v&l()>=x|x>=r()}}}*](l()<=x&x<=r())") ; QE
+  )
+End.
+
+End.

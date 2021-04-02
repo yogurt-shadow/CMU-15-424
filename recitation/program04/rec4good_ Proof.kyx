@@ -1,0 +1,35 @@
+﻿/* Exported from KeYmaera X v4.9.3 */
+
+Theorem "rec4good"
+
+Description "Good controller for ping-pong match".
+
+Functions
+  Real l;
+  Real r;
+End.
+ProgramVariables
+  Real v;
+  Real x;
+End.
+
+Problem
+v >= 0 & l < x & x < r ->
+[{
+ {if (x=l & v<=0 | x=r & v>=0) {v:=-v;}}
+ {{x'=v & l <= x & x <= r} ++ {x'=v & l >= x | x >= r}}
+}*@invariant(l<=x&x<=r)](l <= x & x <= r)
+End.
+
+Tactic "rec4good: Proof"
+unfold ; cut("l() < r()") ; <(
+  loop("l()<=x&x<=r()", 1) ; <(
+    QE,
+    QE,
+    master
+    ),
+  hideR(1=="[{{?x=l()&v<=0|x=r()&v>=0;v:=-v;++?!(x=l()&v<=0|x=r()&v>=0);?true;}{{x'=v&l()<=x&x<=r()}++{x'=v&l()>=x|x>=r()}}}*](l()<=x&x<=r())") ; QE
+  )
+End.
+
+End.

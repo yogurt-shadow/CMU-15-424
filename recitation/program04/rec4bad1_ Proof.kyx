@@ -1,0 +1,39 @@
+﻿/* Exported from KeYmaera X v4.9.3 */
+
+Theorem "rec4bad1"
+
+Description "Two players' ping-pong match with bad controller".
+
+Functions
+    Real l, r;
+End.
+
+ProgramVariables
+    Real x, v;
+End.
+
+Problem
+  x > l & x < r & v >= 0 
+  ->
+  [
+      {
+        {v := v + 1;
+            ++
+            {v' = 5}
+        }
+        {
+            x' = v & (x >= l & x <= r)
+        }
+      }*
+      ] (x >= l & x <= r)
+End.
+
+Tactic "rec4bad1: Proof"
+implyR(1) ; unfold ; loop("x>=l()&x<=r()", 1) ; <(
+  QE,
+  QE,
+  composeb(1) ; GV(1) ; allR(1) ; dW(1) ; prop
+  )
+End.
+
+End.
