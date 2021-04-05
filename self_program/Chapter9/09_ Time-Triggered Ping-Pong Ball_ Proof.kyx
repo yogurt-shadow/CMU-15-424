@@ -1,0 +1,51 @@
+﻿/* Exported from KeYmaera X v4.9.3 */
+
+Theorem "09: Time-Triggered Ping-Pong Ball"
+Description "9.2.5 Proposition 9.1: Time-triggered ping-pong is safe".
+
+Definitions
+  Real H;        /* initial height */
+  Real g;        /* gravity */
+  Real c;        /* damping coefficient */
+  Real f;        /* paddle factor */
+End.
+
+ProgramVariables
+  Real x, v;     /* height, velocity */
+  Real t;        /* time */
+End.
+                
+Problem
+  2 * x = 2 * H - v ^ 2 & x >= 0 & x <= 5 & v <= 0 & g = 1
+  & c =1 & f = 1
+  ->
+  [
+      {
+          {?x = 0; v := -c * v; ++ ?!x = 0;}
+          {?v >= 0 & (x > 5.5 - v | (v < 1 & 2 * x > 10 - v ^ 2)); v := - f * v;
+              ++
+            ?!(v >= 0 & (x > 5.5 - v | (v < 1 & 2 * x > 10 - v ^ 2)));
+          }
+         t := 0;
+          {x' = v, v' = -g, t' = 1 & (t <= 1 & x >= 0)}
+      }*   @invariant(x >= 0 & x <= 5 & 2 * x = 2 * H - v^2)
+      ](x >= 0 & x <= 5)
+  
+End.
+
+Illustration "https://lfcps.org/info/ping-pong-ball-time-miss.png".
+
+Tactic "09: Time-Triggered Ping-Pong Ball: Proof"
+implyR(1) ; loop("x>=0&x<=5&2*x=2*H()-v^2", 1) ; <(
+  QE,
+  QE,
+  unfold ; <(
+    solve(1) ; allR(1) ; implyR(1) ; implyR(1) ; QE,
+    solve(1) ; allR(1) ; implyR(1) ; implyR(1) ; QE,
+    solve(1) ; allR(1) ; implyR(1) ; implyR(1) ; QE,
+    solve(1) ; allR(1) ; implyR(1) ; implyR(1) ; QE
+    )
+  )
+End.
+
+End.

@@ -1,0 +1,29 @@
+﻿/* Exported from KeYmaera X v4.9.3 */
+
+Theorem "Exer9_15_version2"
+
+Description "Zeno's paradox of Achilles and the Tortoise. Version2: simultaneous".
+
+ProgramVariables
+    Real a, t;
+    Real s;
+End.
+
+Definitions
+    Real v, w;
+End.
+
+Problem
+  t > a & v > w & w > 0 & v > 0
+  ->
+  <
+    s := 0;
+    {a' = v, t' = w, s' = 1}
+  >(t = a)
+End.
+
+Tactic "Exer9_15_version2: Proof"
+implyR(1) ; composed(1) ; assignd(1) ; solve(1) ; QE
+End.
+
+End.

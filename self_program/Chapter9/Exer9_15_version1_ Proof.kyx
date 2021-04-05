@@ -1,0 +1,38 @@
+﻿/* Exported from KeYmaera X v4.9.3 */
+
+Theorem "Exer9_15_version1"
+
+Description "Zeno's paradox of Achilles and the Tortoise. Version1: one and one".
+
+ProgramVariables
+    Real a, t;
+    Real s;
+End.
+
+Definitions
+    Real v, w;
+End.
+
+Problem
+  t > a & v > w & w > 0 & v > 0
+  ->
+  [
+      {
+         s := 0;
+        {a' = v, s' = 1 & (a <= t)};
+        ?a = t;
+        {t' = w, s' = -1 & (s >= 0)};
+        ?s = 0;
+      }*  @invariant(t > a)
+      ](t > a)
+End.
+
+Tactic "Exer9_15_version1: Proof"
+implyR(1) ; loop("t>a", 1) ; <(
+  id,
+  id,
+  composeb(1) ; assignb(1) ; composeb(1) ; composeb(1.1) ; solve(1) ; allR(1) ; implyR(1) ; implyR(1) ; allR(1) ; implyR(1) ; testb(1) ; implyR(1) ; composeb(1) ; solve(1) ; allR(1) ; implyR(1) ; implyR(1) ; testb(1) ; QE
+  )
+End.
+
+End.

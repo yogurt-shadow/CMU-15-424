@@ -1,0 +1,50 @@
+﻿/* Exported from KeYmaera X v4.9.3 */
+
+Theorem "Exer9_13"
+
+Description "2D ping-pong events Time_triggered version".
+
+Definitions
+    Real w1;
+    Real h1;
+    Real gx, gy;
+    Real cx, cy;
+    Real fx, fy;
+End.
+
+ProgramVariables
+    Real x, y;
+    Real vx, vy;
+    Real t;
+End.
+
+Problem
+ w1 > 0 & x >= 0 & x <= w1 & h1 > 0 & y >= 0 & y <= h1 & vx <= 0 & vy <= 0 & gx > 0 & gy > 0 & fx >= 0 & fy >= 0 & cx >= 0 & cx <= 1 & cy >= 0 & cy <= 1 
+ ->
+  [
+    {
+        {?x = 0; vx := -cx * vx; ++ ?!x = 0;}
+        {?y = 0; vy := -cy * vy; ++ ?!y = 0;}
+        {
+            ?vx > 0 & (vx >= gx & x + vx - 0.5 *gx > w1 | vx < gx & vx^2 + 2 *gx *x > 2 *gx*w1);  vx := -fx * vx;
+            ++
+            ?!(vx > 0 & (vx >= gx & x + vx - 0.5 *gx > w1 | vx < gx & vx^2 + 2 *gx *x > 2 *gx *w1)); 
+        }
+        {
+            ?vy > 0 & (vy >= gy & y + vy - 0.5*gy > h1 | vy < gy & vy^2 + 2*gy*y > 2*gy*h1);  vy := -fy * vy;
+            ++
+            ?!(vy > 0 & (vy >= gy & y + vy - 0.5*gy > h1 | vy < gy & vy^2 + 2*gy*y > 2*gy*h1)); 
+        }
+        t := 0;
+        {
+            x' = vx, vx' = -gx, y' = vy, vy' = -gy, t' = 1 & (x >= 0 & y >= 0 & t <= 1)
+        }
+        }* @invariant(x >= 0 & x <= w1 & y >= 0 & y <= h1)
+      ](x >= 0 & x <= w1 & y >= 0 & y <= h1)
+End.
+
+Tactic "Exer9_13: Proof"
+auto
+End.
+
+End.

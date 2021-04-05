@@ -1,0 +1,68 @@
+﻿/* Exported from KeYmaera X v4.9.3 */
+
+Theorem "Exer9_14"
+
+Description "Time-triggered robot chase".
+
+Definitions
+    Real A, b;
+    Real e;
+End.
+
+ProgramVariables
+    Real x, y;
+    Real v, w;
+    Real a, c;
+End.
+
+Problem
+  A >= 0 & b > 0 & x <= y & v = 0
+  ->
+  [
+      {
+      {c := A; ++ c := 0; ++ c := -b;}
+      {?c = A; a := A; 
+          ++
+        ?c = 0; a := 0;
+        ++
+        ?c = -b; a := -b;
+      }
+      t := 0;
+      {x' = v, v' = a, y' = w, w' = c, t' = 1 & (v >= 0 & w >= 0 & t <= e)}
+      }*  @invariant(x <= y & (v = 0 | v <= w))
+      ](x <= y)
+End.
+
+Tactic "Exer9_14: Proof"
+implyR(1) ; loop("x<=y&(v=0|v<=w)", 1) ; <(
+  QE,
+  QE,
+  composeb(1) ; choiceb(1) ; andR(1) ; <(
+    assignb(1) ; composeb(1) ; choiceb(1) ; andR(1) ; <(
+      composeb(1) ; testb(1) ; implyR(1) ; assignb(1) ; composeb(1) ; assignb(1) ; solve(1) ; QE,
+      choiceb(1) ; andR(1) ; <(
+        composeb(1) ; testb(1) ; implyR(1) ; assignb(1) ; composeb(1) ; assignb(1) ; solve(1) ; QE,
+        composeb(1) ; testb(1) ; implyR(1) ; assignb(1) ; composeb(1) ; assignb(1) ; solve(1) ; QE
+        )
+      ),
+    choiceb(1) ; andR(1) ; <(
+      assignb(1) ; composeb(1) ; choiceb(1) ; andR(1) ; <(
+        composeb(1) ; testb(1) ; implyR(1) ; assignb(1) ; composeb(1) ; assignb(1) ; solve(1) ; QE,
+        choiceb(1) ; andR(1) ; <(
+          composeb(1) ; testb(1) ; implyR(1) ; assignb(1) ; composeb(1) ; assignb(1) ; solve(1) ; QE,
+          composeb(1) ; testb(1) ; implyR(1) ; assignb(1) ; composeb(1) ; assignb(1) ; solve(1) ; QE
+          )
+        ),
+      assignb(1) ; composeb(1) ; choiceb(1) ; andR(1) ; <(
+        composeb(1) ; testb(1) ; implyR(1) ; assignb(1) ; composeb(1) ; assignb(1) ; solve(1) ; QE,
+        choiceb(1) ; andR(1) ; <(
+          composeb(1) ; testb(1) ; implyR(1) ; assignb(1) ; composeb(1) ; assignb(1) ; solve(1) ; QE,
+          composeb(1) ; testb(1) ; implyR(1) ; assignb(1) ; composeb(1) ; assignb(1) ; solve(1) ; QE
+          )
+        )
+      )
+    )
+  )
+End.
+
+End.
