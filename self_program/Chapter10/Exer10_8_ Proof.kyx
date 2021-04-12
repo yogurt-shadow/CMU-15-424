@@ -1,0 +1,30 @@
+﻿/* Exported from KeYmaera X v4.9.3 */
+
+Theorem "Exer10_8"
+
+Description "Hénon-Heiles system for the motion of a star at (x;y) flying in direction (u;v) around the center of the galaxy".
+
+Definitions
+    Real A, B, e;
+End.
+
+ProgramVariables
+    Real x, y, u, v;
+End.
+
+Problem
+  (u^2 + v^2 + A*x^2 + B*y^2)/2 + x^2*y - e*y^3/3 = 0
+  ->
+  [
+      {x' = u, y' = v, u' = -A*x-2*x*y, v' = -B*y+e*y^2-x^2}
+      ]((u^2 + v^2 + A*x^2 + B*y^2)/2 + x^2*y - e*y^3/3 = 0)
+End.
+
+Tactic "Exer10_8: Proof"
+implyR(1) ; dIRule(1) ; <(
+  id,
+  Dassignb(1) ; Dassignb(1) ; Dassignb(1) ; Dassignb(1) ; QE
+  )
+End.
+
+End.

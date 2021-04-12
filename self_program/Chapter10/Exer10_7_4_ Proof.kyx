@@ -1,0 +1,24 @@
+﻿/* Exported from KeYmaera X v4.9.3 */
+
+Theorem "Exer10_7_4"
+
+ProgramVariables
+    Real x, y;
+End.
+
+Problem
+  x^2 + 4*x*y - 2*y^3 - y = 1
+  ->
+  [
+      {x' = -1 + 4*x - 6*y^2, y' = -2*x - 4*y}
+      ](x^2 + 4*x*y - 2*y^3 - y = 1)
+End.
+
+Tactic "Exer10_7_4: Proof"
+implyR(1) ; dIRule(1) ; <(
+  id,
+  Dassignb(1) ; Dassignb(1) ; QE
+  )
+End.
+
+End.

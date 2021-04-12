@@ -1,0 +1,26 @@
+﻿/* Exported from KeYmaera X v4.9.3 */
+
+Theorem "Asst2_7_a"
+
+Problem
+  x > 0
+  ->
+  [
+      {
+          {x := 5; ++ x := 3;}
+      }*  @invariant(x > 0)
+      ](x > 0)
+End.
+
+Tactic "Asst2_7_a: Proof"
+implyR(1) ; loop("x>0", 1) ; <(
+  id,
+  id,
+  choiceb(1) ; andR(1) ; <(
+    assignb(1) ; QE,
+    assignb(1) ; QE
+    )
+  )
+End.
+
+End.

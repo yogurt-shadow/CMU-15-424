@@ -1,0 +1,26 @@
+﻿/* Exported from KeYmaera X v4.9.3 */
+
+Theorem "10: Simple rotational dynamics"
+Description "10.3.7 Simple rotational dynamics".
+
+Definitions
+  Real r;        /* radius r of circle around origin */
+End.
+
+ProgramVariables
+  Real v,w;      /* direction in x/y-axis */
+End.
+
+Problem
+  v^2+w^2-r^2=0 -> 
+    [{v'=w,w'=-v}@invariant(v^2+w^2-r^2=0)] v^2+w^2-r^2=0
+End.
+
+Tactic "10: Simple rotational dynamics: Proof"
+implyR(1) ; dIRule(1) ; <(
+  id,
+  Dassignb(1) ; Dassignb(1) ; QE
+  )
+End.
+
+End.

@@ -1,0 +1,28 @@
+﻿/* Exported from KeYmaera X v4.9.3 */
+
+Theorem "Exer10_7_1"
+
+Definitions
+    Real c;
+End.
+
+ProgramVariables
+    Real x, y, z;
+End.
+
+Problem
+  x*y = c
+  ->
+  [
+      {x' = -x, y' = y, z' = -z}
+      ](x*y = c)
+End.
+
+Tactic "Exer10_7_1: Proof"
+implyR(1) ; dIRule(1) ; <(
+  id,
+  Dassignb(1) ; Dassignb(1) ; Dassignb(1) ; QE
+  )
+End.
+
+End.

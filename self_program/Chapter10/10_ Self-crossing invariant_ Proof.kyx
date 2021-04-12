@@ -1,0 +1,29 @@
+﻿/* Exported from KeYmaera X v4.9.3 */
+
+Theorem "10: Self-crossing invariant"
+Description "Example 10.7: Self-crossing".
+
+Definitions
+  Real c;
+End.
+
+ProgramVariables
+  Real x,y;
+End.
+
+Problem
+ x^2+x^3-y^2-c=0 -> 
+   [{x' = -2*y, y' = -2*x - 3*x^2}] x^2+x^3-y^2-c=0
+  
+End.
+
+Illustration "https://lfcps.org/info/fig-self-crossing.png".
+
+Tactic "10: Self-crossing invariant: Proof"
+implyR(1) ; dIRule(1) ; <(
+  id,
+  Dassignb(1) ; Dassignb(1) ; QE
+  )
+End.
+
+End.

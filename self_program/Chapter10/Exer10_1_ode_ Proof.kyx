@@ -1,0 +1,17 @@
+﻿/* Exported from KeYmaera X v4.9.3 */
+
+Theorem "Exer10_1_ode"
+
+Problem
+  x = 0
+  ->
+  [
+        {x' = 1 & false  }
+      ](false)
+End.
+
+Tactic "Exer10_1_ode: Proof"
+auto
+End.
+
+End.

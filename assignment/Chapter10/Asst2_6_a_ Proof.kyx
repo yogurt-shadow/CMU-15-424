@@ -1,0 +1,30 @@
+﻿/* Exported from KeYmaera X v4.9.3 */
+
+Theorem "Asst2_6_a"
+
+Definitions
+    Real station;
+    Real T;
+End.
+
+ProgramVariables
+    Real vel;
+    Real pos;
+    Real t;
+    Real acc;
+End.
+
+Problem
+  vel > 0 & pos < station & T > 0 & acc = -vel^2/(2*(station - pos))
+  ->
+  [
+      t := 0;
+      {pos' = vel, vel' = acc, t' = 1 & (vel >= 0 & t <= T)}
+      ](vel = 0 -> pos = station)
+End.
+
+Tactic "Asst2_6_a: Proof"
+implyR(1) ; composeb(1) ; assignb(1) ; solve(1) ; QE
+End.
+
+End.

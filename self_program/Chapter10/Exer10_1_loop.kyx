@@ -1,0 +1,14 @@
+/* Exported from KeYmaera X v4.9.3 */
+
+Theorem "Exer10_1_loop"
+
+Problem
+  x = 0
+  ->
+  [
+  {
+        {x' = 1 & false  }
+        }*
+      ](false)
+End.
+End.

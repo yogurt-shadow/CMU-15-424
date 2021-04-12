@@ -1,0 +1,24 @@
+﻿/* Exported from KeYmaera X v4.9.3 */
+
+Theorem "Asst2_7_b"
+
+Problem
+  x > 0 & a > 0 & A > 0 & v >= 0 
+  ->
+  [
+      {
+        {a := 0; ++ a := A;}  
+        {x' = v, v' = a}
+      }*  @invariant(x >= 0 & v >= 0 & a >= 0)
+      ](x >= 0)
+End.
+
+Tactic "Asst2_7_b: Proof"
+implyR(1) ; loop("x>=0&v>=0&a>=0", 1) ; <(
+  QE,
+  QE,
+  composeb(1) ; solve(1.1) ; choiceb(1) ; assignb(1.0) ; assignb(1.1) ; QE
+  )
+End.
+
+End.

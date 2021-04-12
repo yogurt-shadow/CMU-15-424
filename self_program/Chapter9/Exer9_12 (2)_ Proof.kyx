@@ -1,0 +1,45 @@
+﻿/* Exported from KeYmaera X v4.9.3 */
+
+Theorem "Exer9_12 (2)"
+
+Description "Time-triggered energy-invariant control ping-pong ball. Postcondition 0<=x<=10 with control 4<=x<=5".
+
+
+Definitions
+    Real c;
+    Real f;
+    Real g;
+    Real vm;
+    Real H;
+End.
+
+ProgramVariables
+    Real x;
+    Real v;
+    Real t;
+    Real x0;
+    Real v0;
+End.
+
+Problem
+  c = 1 & g > 0 & f = 1 & x >= 0 & x <= 10 & v <= 0 & vm^2 = v^2 + 2*g*x & vm >= 0 
+  ->
+  [
+      {
+          
+         t := 0;
+         x0 := x;
+         {{x' = v, v' = -g,t' = 1 & (x >= 0 & x0 >= 5)}
+         ++
+         {x' = v, v' = -g, t' = 1 & (x >= 0 & x0 < 5 & x0 + vm * t - 0.5*g*t^2 <= 5)}}
+         {?x = 0; v := -c * v; ++ ?!x = 0;}
+         {?x >= 4 & x <= 5 & v > 0 & v^2 + 2*g*x > 2*g*10; v := -f * v; ++ ?!(x>= 4 & x <= 5 & v > 0 & v^2 + 2*g*x > 2*g*10);}
+      }*   @invariant(x >= 0 & x <= 10 & 2*g*x + v^2 = vm^2 & (x >=5 -> (v < 0 | 2*g*(10-x) >= v^2)))
+      ](x >= 0 & x <= 10)
+End.
+
+Tactic "Exer9_12 (2): Proof"
+auto
+End.
+
+End.

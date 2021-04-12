@@ -1,0 +1,33 @@
+﻿/* Exported from KeYmaera X v4.9.3 */
+
+Theorem "Exam10_9"
+
+Description "Example of differential invariants (dI) with cut and MR".
+
+ProgramVariables
+    Real x;
+    Real y;
+End.
+
+Problem
+  x^2 + y^2 = 0
+  ->
+  [
+      {x' = 4*y^3, y' = -4*x^3}
+      ](x^2 + y^2 = 0)
+End.
+
+Tactic "Exam10_9: Proof"
+implyR(1) ; cut("x^4+y^4=0") ; <(
+  hideL(-1=="x^2+y^2=0") ; MR("x^4+y^4=0", 1) ; <(
+    dIRule(1) ; <(
+      id,
+      Dassignb(1) ; Dassignb(1) ; QE
+      ),
+    QE
+    ),
+  hideR(1=="[{x'=4*y^3,y'=(-4)*x^3}]x^2+y^2=0") ; QE
+  )
+End.
+
+End.

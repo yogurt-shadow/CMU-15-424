@@ -1,0 +1,31 @@
+﻿/* Exported from KeYmaera X v4.9.3 */
+
+Theorem "10: Motzkin polynomial invariant"
+Description "Example 10.8: Motzkin".
+
+Definitions
+  Real c;
+End.
+
+ProgramVariables
+  Real x;
+  Real y;
+End.
+
+Problem
+  x^4*y^2+x^2*y^4-3*x^2*y^2+1=c ->
+  [
+    {x'=2*x^4*y+4*x^2*y^3-6*x^2*y, y'=-4*x^3*y^2-2*x*y^4+6*x*y^2}@invariant(x^4*y^2+x^2*y^4-3*x^2*y^2+1-c=0)
+  ] x^4*y^2+x^2*y^4-3*x^2*y^2+1=c
+End.
+
+Illustration "https://lfcps.org/info/fig-DI-dynamics2.png".
+
+Tactic "10: Motzkin polynomial invariant: Proof"
+implyR(1) ; dIRule(1) ; <(
+  id,
+  Dassignb(1) ; Dassignb(1) ; QE
+  )
+End.
+
+End.

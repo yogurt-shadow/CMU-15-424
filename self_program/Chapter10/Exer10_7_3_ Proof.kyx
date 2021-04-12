@@ -1,0 +1,28 @@
+﻿/* Exported from KeYmaera X v4.9.3 */
+
+Theorem "Exer10_7_3"
+
+Definitions
+    Real c;
+End.
+
+ProgramVariables
+    Real x, y;
+End.
+
+Problem
+  x^2 + y^3/3 = c
+  ->
+  [
+      {x' = y^2, y' = -2*x}
+      ](x^2 + y^3/3 = c)
+End.
+
+Tactic "Exer10_7_3: Proof"
+implyR(1) ; dIRule(1) ; <(
+  id,
+  Dassignb(1) ; Dassignb(1) ; QE
+  )
+End.
+
+End.

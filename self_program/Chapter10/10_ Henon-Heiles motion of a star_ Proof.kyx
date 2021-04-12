@@ -1,0 +1,29 @@
+﻿/* Exported from KeYmaera X v4.9.3 */
+
+Theorem "10: Henon-Heiles motion of a star"
+Description "Henon-Heiles system for the motion of a star around the center of the galaxy".
+
+Definitions
+  Real eps;
+  Real A;
+  Real B;
+End. 
+
+ProgramVariables
+  Real x, y;     /* x/y-position */
+  Real u, v;     /* x/y-direction */
+End.
+
+Problem
+  1/2 * (u^2 + v^2 + A*x^2 + B*y^2) + x^2*y - 1/3 * eps * y^3 = 0 ->
+  [{x'=u,y'=v,u'=-A*x - 2*x*y, v'= -B*y + eps*y^2 - x^2}]1/2 * (u^2 + v^2 + A*x^2 + B*y^2) + x^2*y - 1/3 * eps * y^3 = 0
+End.
+
+Tactic "10: Henon-Heiles motion of a star: Proof"
+implyR(1) ; dIRule(1) ; <(
+  id,
+  Dassignb(1) ; Dassignb(1) ; Dassignb(1) ; Dassignb(1) ; QE
+  )
+End.
+
+End.
