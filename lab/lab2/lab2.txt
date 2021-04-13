@@ -1,0 +1,27 @@
+1.  What is a good safety condition for this system?
+posLead >= posCtrl
+
+2.  Under which initial conditions would the system satisfy your safety condition? For example, if
+the cars already start at posctrl > poslead then they have already crashed before your controller
+could do anything at all to save the day!
+posLead >= posCtrl & velLead >= velCtrl & velCtrl > 0
+if velCtrl is larger than velLead, it is possible to crash.
+
+3.  What would be a good criteria for claiming that your model is effcient?
+My model makes accelerate available when it doesn't lead to a unsafe state.
+We need to determine the state that it is just not late to brake. 
+This boarder statement is  velCtrl > velLead & 2*B*(posLead-posCtrl) = (velCtrl-velLead)^2. In this state, if we brake the controller car, 
+two cars just won't crash.
+So I put the accelerate condition:  velCtrl < velLead | 2*B*(posLead-posCtrl) > (velCtrl-velLead)^2
+When velCtrl < velLead, it is okay to accelerate because the distance keeps increasing.
+When 2*B*(posLead-posCtrl) > (velCtrl-velLead)^2, we can also accelerate since we can then brake to save this nearly unsafe state.
+And also I divide the ode's domain into two parts:
+velCtrl >= 0 & 2*B*(posLead-posCtrl) >= (velCtrl-velLead)^2)
+velCtrl >= 0 & 2*B*(posLead-posCtrl) <= (velCtrl-velLead)^2)
+velCtrl is a physical limitation which says that brake can not make the controller car's velocity negative.
+The second is a controller limitation which causes a stop when it is just the latest time to brake the controller car.
+And certainly, this model can break earlier because ode's process time is undeterministic.
+
+BONUS PROBLEM:
+Just to fix the condition to velCtrl < velLead | 2*B*(posLead-posCtrl-c) > (velCtrl-velLead)^2
+since we need to assure the distance when velocity are the same is larger or equal than c.

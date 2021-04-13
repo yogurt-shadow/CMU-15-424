@@ -1,0 +1,53 @@
+/**
+ * Running time (in minutes, estimate):
+ * Proved?(Y/N):
+ * KeYmaera X Version:
+ *
+ * Please do not put personally identifiable information in any file that you
+ * submit. Any resulting implicit bias can and will be used against your grade.
+ */
+
+Functions
+  Real A;
+  Real B;
+  Real T;
+End.
+
+ProgramVariables
+  Real posLead;
+  Real velLead;
+  Real accLead;
+
+  Real posCtrl;
+  Real velCtrl;
+  Real accCtrl;
+
+  Real t;
+End.
+
+Problem
+  /* INITIAL CONDITIONS */
+  posLead >= posCtrl & velLead >= velCtrl & velCtrl > 0 & A > 0 & B > 0 & T > 0
+  ->
+  [
+    {
+      /* CONTROL */
+      {
+        ?velCtrl + A*T <= velLead - B*T; accCtrl := A; /* assign a safe accel to ctrl. */
+        ++
+        ?velCtrl = 0 | velCtrl <= velLead - B*T; accCtrl := 0;
+        ++
+        ?velCtrl > 0; accCtrl := -B; /* safely assign acceleration or braking to lead */
+      }
+      /* CONTINUOUS DYNAMICS */
+      t := 0;
+      {accLead := A; ++ accLead := -B;}
+      {
+        {posLead' = velLead, velLead' = accLead, posCtrl' = velCtrl, velCtrl' = accCtrl, t' = 1 &
+          velLead >= 0 & velCtrl >= 0 & t <= T} /* evolution domain and event-trigger */
+      }
+    }*@invariant(posLead >= posCtrl & velLead >= velCtrl) /* loop invariant */
+  ]
+  (posLead >= posCtrl) /* safety condition */
+
+End.

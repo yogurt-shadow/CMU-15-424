@@ -1,0 +1,25 @@
+﻿/* Exported from KeYmaera X v4.9.3 */
+
+Theorem "rec5exer5"
+
+Description "differential invariant used to prove inequality version2".
+
+Problem
+  x = 1 & y = 1
+  ->
+  [
+      {x' = (-x + 3*y)/4, y' = (-3*x + y)/4}
+      ](y <= 3/2)
+End.
+
+Tactic "rec5exer5: Proof"
+implyR(1) ; MR("3*(x^2+y^2)-2*x*y-4=0", 1) ; <(
+  dIRule(1) ; <(
+    QE,
+    Dassignb(1) ; Dassignb(1) ; QE
+    ),
+  QE
+  )
+End.
+
+End.

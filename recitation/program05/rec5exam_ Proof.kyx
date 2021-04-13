@@ -1,0 +1,20 @@
+﻿/* Exported from KeYmaera X v4.9.3 */
+
+Theorem "rec5exam"
+
+Problem
+  x = x0 & t = 0
+  ->
+  [
+      {x' = v, t' = 1}
+      ](x - (x0 + v*t) = 0)
+End.
+
+Tactic "rec5exam: Proof"
+implyR(1) ; dIRule(1) ; <(
+  QE,
+  Dassignb(1) ; Dassignb(1) ; QE
+  )
+End.
+
+End.

@@ -1,0 +1,65 @@
+﻿/* Exported from KeYmaera X v4.9.3 */
+
+Theorem "L2Q1_bonus"
+/**
+ * Running time (in minutes, estimate):
+ * Proved?(Y/N):
+ * KeYmaera X Version:
+ *
+ * Please do not put personally identifiable information in any file that you
+ * submit. Any resulting implicit bias can and will be used against your grade.
+ */
+
+Functions
+  Real A;
+  Real B;
+  Real velLead;
+  Real c;
+End.
+
+ProgramVariables
+  Real posLead;
+
+  Real posCtrl;
+  Real velCtrl;
+  Real accCtrl;
+End.
+
+Problem
+  /* INITIAL CONDITIONS */
+  posLead >= posCtrl + c & velLead >= velCtrl & velCtrl > 0 & A > 0 & B > 0 & c > 0
+  ->
+  [
+    {
+      /* CONTROL */
+      {
+        ?velCtrl < velLead | 2*B*(posLead-posCtrl-c) > (velLead-velCtrl)^2; accCtrl := A; /* safely assign acceleration or braking for ctrl */
+        ++
+        accCtrl := -B;
+      }
+      /* CONTINUOUS DYNAMICS */
+      {
+        {posCtrl' = velCtrl, velCtrl' = accCtrl, posLead' = velLead &
+          (velCtrl >= 0 & 2*B*(posLead-posCtrl-c) >= (velLead-velCtrl)^2)} /* evolution domain and event trigger */
+        ++
+        {posCtrl' = velCtrl, velCtrl' = accCtrl, posLead' = velLead &
+          (velCtrl >= 0 & 2*B*(posLead-posCtrl-c) <= (velLead-velCtrl)^2)} /* evolution domain, no event */
+      }
+    }*@invariant(posLead >= posCtrl + c & (velCtrl < velLead | 2*B*(posLead-posCtrl-c) >= (velCtrl-velLead)^2)) /* loop invariant */
+  ]
+  (posLead >= posCtrl + c) /* safety condition */
+
+End.
+
+Tactic "L2Q1_bonus: Proof"
+implyR(1) ; loop("posLead>=posCtrl+c()&(velCtrl < velLead()|2*B()*(posLead-posCtrl-c())>=(velCtrl-velLead())^2)", 1) ; <(
+  QE,
+  QE,
+  composeb(1) ; choiceb(1.1) ; solve(1.1.0) ; solve(1.1.1) ; choiceb(1) ; andR(1) ; <(
+    composeb(1) ; testb(1) ; implyR(1) ; assignb(1) ; QE,
+    assignb(1) ; QE
+    )
+  )
+End.
+
+End.

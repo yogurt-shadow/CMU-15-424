@@ -1,0 +1,38 @@
+﻿/* Exported from KeYmaera X v4.9.3 */
+
+Theorem "rec5time"
+Functions
+  Real l;
+  Real r;
+  Real T;
+End.
+ProgramVariables
+  Real v;
+  Real x;
+  Real t;
+End.
+
+Problem
+l <= x & x<=r & v >= 0 & T > 0 & l + 2*v*T <= r ->
+[ {
+    {?(v >= 0 & x + v*T > r | v <= 0 & x + v*T < l); v := -v;
+        ++
+        ?!((v >= 0 & x + v*T > r | v <= 0 & x + v*T < l));
+    }
+    {t:=0; {x'=v, t'=1 & t <= T}}
+  }*@invariant((l<=x&x<=r) & l + 2*abs(v)*T <= r)
+](l <= x & x <= r)
+End.
+
+Tactic "rec5time: Proof"
+implyR(1) ; loop("(l()<=x&x<=r())&l()+2*abs(v)*T()<=r()", 1) ; <(
+  QE,
+  QE,
+  composeb(1) ; composeb(1.1) ; solve(1.1.1) ; assignb(1.1) ; choiceb(1) ; andR(1) ; <(
+    composeb(1) ; testb(1) ; implyR(1) ; assignb(1) ; QE,
+    testb(1) ; QE
+    )
+  )
+End.
+
+End.
