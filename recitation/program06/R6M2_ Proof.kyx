@@ -1,0 +1,50 @@
+﻿/* Exported from KeYmaera X v4.9.3 */
+
+Theorem "R6M2"
+Functions
+  Real l;
+  Real r;
+  Real T;
+End.
+ProgramVariables
+  Real g;
+  Real h;
+  Real w;
+  Real x;
+  Real y;
+  Real vx;
+  Real vy;
+  Real t;
+  Real x0;
+  Real y0;
+  Real p;
+  Real s;
+  Real a;
+  Real b;
+  Real va;
+  Real vb;
+End.
+
+Problem
+g > 0 & h^2 + w^2 = 1 & h > 0 & w > 0 & t = 0 & x = x0 & y = y0 & vx = 0 & vy = 0
+& p^2 + s^2 = 1 & p > 0 & s > 0 & a = x0 & b = y0 & va = 0 & vb = 0 & s > h ->
+[ {
+    x' = vx, y' = vy, vx' = g*w*h, vy' = -g*h^2,  a' = va, b' = vb, va' = g*s*p, vb' = -g*s^2, t' = 1
+  }
+]y >= b
+End.
+
+Tactic "R6M2: Proof"
+implyR(1) ; dC("vy>=vb", 1) ; <(
+  dIRule(1) ; <(
+    QE,
+    unfold
+    ),
+  dIRule(1) ; <(
+    QE,
+    unfold ; QE
+    )
+  )
+End.
+
+End.

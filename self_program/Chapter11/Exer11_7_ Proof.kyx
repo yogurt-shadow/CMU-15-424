@@ -1,0 +1,68 @@
+﻿/* Exported from KeYmaera X v4.9.3 */
+
+Theorem "Exer11_7"
+
+Description "Aerodynamic bouncing ball general version".
+
+Problem
+  x <= H & v = 0 & x >= 0 & g > 0 & c >= 0 & c <= 1 & r >= 0
+  ->
+  [
+      {
+      {?x = 0; v := -c*v; ++ ?!x=0;}
+      {
+          {x' = v, v' = -g-r*v^2 & (x >= 0 & v >= 0)}
+          ++
+          {x' = v, v' = -g+r*v^2 & (x >= 0 & v <= 0)}
+      }*  @invariant(x >= 0 & 2*g*x + v^2 <= 2*g*H)
+      }*  @invariant(x >= 0 & 2*g*x + v^2 <= 2*g*H)
+      ](x >= 0 & x <= H)
+End.
+
+Tactic "Exer11_7: Proof"
+implyR(1) ; loop("x>=0&2*g*x+v^2<=2*g*H", 1) ; <(
+  QE,
+  QE,
+  unfold ; <(
+    loop("x>=0&2*g*x+v^2<=2*g*H", 1) ; <(
+      QE,
+      QE,
+      unfold ; <(
+        dC("2*g*x+v^2<=2*g*H", 1) ; <(
+          dW(1) ; QE,
+          dIRule(1) ; <(
+            QE,
+            unfold ; QE
+            )
+          ),
+        dC("2*g*x+v^2<=2*g*H", 1) ; <(
+          dW(1) ; QE,
+          dIRule(1) ; <(
+            QE,
+            unfold ; QE
+            )
+          )
+        )
+      ),
+    loop("x>=0&2*g*x+v^2<=2*g*H", 1) ; <(
+      QE,
+      QE,
+      unfold ; <(
+        dIRule(1) ; <(
+          QE,
+          Dassignb(1) ; Dassignb(1) ; QE
+          ),
+        dC("2*g*x+v^2<=2*g*H", 1) ; <(
+          dW(1) ; QE,
+          dIRule(1) ; <(
+            QE,
+            unfold ; QE
+            )
+          )
+        )
+      )
+    )
+  )
+End.
+
+End.

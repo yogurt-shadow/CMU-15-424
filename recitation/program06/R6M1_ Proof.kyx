@@ -1,0 +1,51 @@
+﻿/* Exported from KeYmaera X v4.9.3 */
+
+Theorem "R6M1"
+Functions
+  Real l;
+End.
+ProgramVariables
+  Real g;
+  Real h;
+  Real w;
+  Real vx;
+  Real vy;
+  Real t;
+  Real x0;
+  Real y0;
+  Real y;
+  Real x;
+
+End.
+
+Problem
+g > 0 & h^2 + w^2 = 1 & h > 0 & w > 0 & t = 0 & x = x0 & y = y0 & vx = 0 & vy = 0 ->
+[ {
+    x' = vx, y' = vy, vx' = g*w*h, vy' = -g*h^2, t' = 1
+  }
+](x - x0)^2 + (y - y0)^2 = (1/2*g*h*t^2)^2
+End.
+
+Tactic "R6M1: Proof"
+implyR(1) ; MR("x-x0=1/2*g*w*h*t^2&y-y0=(-1)/2*g*h^2*t^2", 1) ; <(
+  dC("vx=g*w*h*t", 1) ; <(
+    dC("vy=-g*h^2*t", 1) ; <(
+      dIRule(1) ; <(
+        QE,
+        unfold ; QE
+        ),
+      dIRule(1) ; <(
+        QE,
+        unfold ; QE
+        )
+      ),
+    dIRule(1) ; <(
+      QE,
+      unfold ; QE
+      )
+    ),
+  QE
+  )
+End.
+
+End.

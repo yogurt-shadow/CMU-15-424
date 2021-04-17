@@ -1,0 +1,25 @@
+﻿/* Exported from KeYmaera X v4.9.3 */
+
+Theorem "Exam11_6"
+
+Description "Bouncing ball's gravity".
+
+Problem
+  2*g*x = 2*g*H - v^2
+  ->
+  [
+      {x' = v, v' = -g & x >= 0}
+      ](2*g*x = 2*g*H - v^2 & x >= 0)
+End.
+
+Tactic "Exam11_6: Proof"
+implyR(1) ; boxAnd(1) ; andR(1) ; <(
+  dIRule(1) ; <(
+    id,
+    Dassignb(1) ; Dassignb(1) ; QE
+    ),
+  dW(1) ; id
+  )
+End.
+
+End.

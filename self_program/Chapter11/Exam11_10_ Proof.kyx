@@ -1,0 +1,28 @@
+﻿/* Exported from KeYmaera X v4.9.3 */
+
+Theorem "Exam11_10"
+
+Description "Robot formula".
+
+Problem
+  (x-1)^2 + (y-2)^2 >= p^2 & w*(x-1)=-u & w*(y-2)=v
+  ->
+  [
+      {x' = v, y' = u, v' = w*u, u' = -w*v}
+      ]((x-1)^2 + (y-2)^2 >= p^2)
+End.
+
+Tactic "Exam11_10: Proof"
+implyR(1) ; dC("w*(x-1)=-u&w*(y-2)=v", 1) ; <(
+  dIRule(1) ; <(
+    QE,
+    Dassignb(1) ; Dassignb(1) ; Dassignb(1) ; Dassignb(1) ; QE
+    ),
+  dIRule(1) ; <(
+    QE,
+    Dassignb(1) ; Dassignb(1) ; Dassignb(1) ; Dassignb(1) ; QE
+    )
+  )
+End.
+
+End.

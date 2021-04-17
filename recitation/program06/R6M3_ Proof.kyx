@@ -1,0 +1,27 @@
+﻿/* Exported from KeYmaera X v4.9.3 */
+
+Theorem "R6M3"
+
+ProgramVariables
+    
+End.
+
+Problem
+g > 0 & w > 0 & h > 0 & k > 0 & w^2 + h^2 = 1 & x = 0 & vx = 0 & c = w*g*h
+->
+[
+    {x' = vx, vx' = c - k*x}
+    ](x <= 2*c/k & vx^2 <= c^2/k)
+End.
+
+Tactic "R6M3: Proof"
+implyR(1) ; MR("(x-c/k)^2/(c/k)^2+vx^2/(c^2/k)=1", 1) ; <(
+  dIRule(1) ; <(
+    QE,
+    unfold ; QE
+    ),
+  QE
+  )
+End.
+
+End.

@@ -1,0 +1,26 @@
+﻿/* Exported from KeYmaera X v4.9.3 */
+
+Theorem "Exer11_2_4"
+
+Problem
+  x >= 2 & y >= 22
+  ->
+  [
+      {x' = 4*x^2, y' = x + y^4}
+      ](y >= 22)
+End.
+
+Tactic "Exer11_2_4: Proof"
+implyR(1) ; dC("x>=2", 1) ; <(
+  dIRule(1) ; <(
+    QE,
+    unfold ; QE
+    ),
+  dIRule(1) ; <(
+    QE,
+    unfold ; QE
+    )
+  )
+End.
+
+End.

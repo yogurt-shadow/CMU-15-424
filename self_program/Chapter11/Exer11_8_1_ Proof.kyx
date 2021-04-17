@@ -1,0 +1,19 @@
+﻿/* Exported from KeYmaera X v4.9.3 */
+
+Theorem "Exer11_8_1"
+
+Problem
+  [
+      x := 1;
+      {x' = x^2 + 2*x^4}
+      ](x >= 1)
+End.
+
+Tactic "Exer11_8_1: Proof"
+unfold ; dIRule(1) ; <(
+  QE,
+  Dassignb(1) ; QE
+  )
+End.
+
+End.

@@ -1,0 +1,34 @@
+﻿/* Exported from KeYmaera X v4.9.3 */
+
+Theorem "Exer11_6"
+
+Description "Robot formula version2".
+
+Problem
+  (x-1)^2 + (y-2)^2 >= p^2 & w*(x-1)=-u & w*(y-2)=v
+  ->
+  [
+      {x' = v, y' = u, v' = w*u, u' = -w*v}
+      ]((x-1)^2 + (y-2)^2 >= p^2)
+End.
+
+Tactic "Exer11_6: Proof"
+implyR(1) ; dC("w*(x-1)=-u", 1) ; <(
+  dC("w*(y-2)=v", 1) ; <(
+    dIRule(1) ; <(
+      QE,
+      unfold ; QE
+      ),
+    dIRule(1) ; <(
+      QE,
+      unfold ; QE
+      )
+    ),
+  dIRule(1) ; <(
+    QE,
+    unfold ; QE
+    )
+  )
+End.
+
+End.

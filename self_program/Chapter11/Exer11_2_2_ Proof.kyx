@@ -1,0 +1,23 @@
+﻿/* Exported from KeYmaera X v4.9.3 */
+
+Theorem "Exer11_2_2"
+
+Problem
+  x >= 1 & x^3 >= 8
+  ->
+  [
+      {x' = x^4 + x^2}
+      ](x >= 1 & x^3 >= 8)
+End.
+
+Tactic "Exer11_2_2: Proof"
+implyR(1) ; dC("x>=2", 1) ; <(
+  dW(1) ; QE,
+  dIRule(1) ; <(
+    QE,
+    Dassignb(1) ; QE
+    )
+  )
+End.
+
+End.

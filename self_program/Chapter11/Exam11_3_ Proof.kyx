@@ -1,0 +1,22 @@
+﻿/* Exported from KeYmaera X v4.9.3 */
+
+Theorem "Exam11_3"
+
+Description "Rotational dynamics".
+
+Problem
+  v^2+w^2<=r^2
+  ->
+  [
+      {v' = w, w' = -v}
+      ](v^2+w^2<=r^2)
+End.
+
+Tactic "Exam11_3: Proof"
+implyR(1) ; dIRule(1) ; <(
+  id,
+  Dassignb(1) ; Dassignb(1) ; QE
+  )
+End.
+
+End.

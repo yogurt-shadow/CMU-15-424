@@ -1,0 +1,86 @@
+﻿/* Exported from KeYmaera X v4.9.3 */
+
+Theorem "Exer11_11"
+
+Description "Runaround Robot".
+
+Definitions 
+    Real A1, B1, a1, b1;
+    Real A2, B2, a2, b2;
+    Real ox, oy;
+End.
+
+ProgramVariables
+    Real x, y;
+    Real v, u;
+    Real w;
+End.
+
+Problem
+  !(x = ox & y = oy)
+  ->
+  [
+      {
+        {
+            v := A1; u := B1; x := a1-B1; y := A1+b1;
+         ?!(ox-a1)^2+(oy-b1)^2=A1^2+B1^2;  w := 1;
+          ++
+          v := A2; u := B2; x := a2+B2; y := -A2+b2;
+          ?!(ox-a2)^2+(oy-b2)^2=A2^2+B2^2; w := -1;
+          ++
+      ?(v = 0 & u = 0 | v = 0 & !x = ox | u = 0 & !y = oy | !u = 0 & !v = 0 & !v*(oy-y)=u*(ox-x)); w := 0;
+        }
+      {x' = v, y' = u, v' = w*u, u' = -w*v}
+      }*  @invariant(!(x = ox & y = oy))
+      ](!(x = ox & y = oy))
+End.
+
+Tactic "Exer11_11: Proof"
+implyR(1) ; loop("!(x=ox()&y=oy())", 1) ; <(
+  QE,
+  QE,
+  unfold ; <(
+    MR("(x-a1())^2+(y-b1())^2=A1()^2+B1()^2", 1) ; <(
+      dC("x-a1()=-u", 1) ; <(
+        dC("y-b1()=v", 1) ; <(
+          dIRule(1) ; <(
+            QE,
+            unfold ; QE
+            ),
+          dIRule(1) ; <(
+            QE,
+            unfold ; QE
+            )
+          ),
+        dIRule(1) ; <(
+          QE,
+          unfold ; QE
+          )
+        ),
+      QE
+      ),
+    MR("(x-a2())^2+(y-b2())^2=A2()^2+B2()^2", 1) ; <(
+      dC("x-a2()=u", 1) ; <(
+        dC("y-b2()=-v", 1) ; <(
+          dIRule(1) ; <(
+            QE,
+            unfold ; QE
+            ),
+          dIRule(1) ; <(
+            QE,
+            unfold ; QE
+            )
+          ),
+        dIRule(1) ; <(
+          QE,
+          unfold ; QE
+          )
+        ),
+      QE
+      ),
+    auto
+    )
+  )
+End.
+
+End.

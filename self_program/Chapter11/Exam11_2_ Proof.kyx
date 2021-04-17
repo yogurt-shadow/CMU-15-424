@@ -1,0 +1,22 @@
+﻿/* Exported from KeYmaera X v4.9.3 */
+
+Theorem "Exam11_2"
+
+Description "Cubic dynamics using inequality invariant".
+
+Problem
+  5*x^2 >= 1/3
+  ->
+  [
+      {x' = x^3}
+      ](5*x^2 >= 1/3)
+End.
+
+Tactic "Exam11_2: Proof"
+implyR(1) ; dIRule(1) ; <(
+  id,
+  Dassignb(1) ; QE
+  )
+End.
+
+End.

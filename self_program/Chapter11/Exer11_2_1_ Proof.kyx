@@ -1,0 +1,20 @@
+﻿/* Exported from KeYmaera X v4.9.3 */
+
+Theorem "Exer11_2_1"
+
+Problem
+  x*y^2 + x >= 7
+  ->
+  [
+      {x' = -2*x*y, y' = 1+y^2}
+      ](x*y^2 + x >= 7)
+End.
+
+Tactic "Exer11_2_1: Proof"
+implyR(1) ; dIRule(1) ; <(
+  id,
+  unfold ; QE
+  )
+End.
+
+End.
