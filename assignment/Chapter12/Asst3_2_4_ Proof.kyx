@@ -1,0 +1,23 @@
+﻿/* Exported from KeYmaera X v4.9.3 */
+
+Theorem "Asst3_2_4"
+
+Problem
+  x^4+y^5=0
+  ->
+  [
+      {x' = 10*y^4, y' = -8*x^3}
+      ](x^4+y^5=0 | x*y=12)
+End.
+
+Tactic "Asst3_2_4: Proof"
+implyR(1) ; MR("x^4+y^5=0", 1) ; <(
+  dIRule(1) ; <(
+    id,
+    unfold ; QE
+    ),
+  QE
+  )
+End.
+
+End.

@@ -1,0 +1,42 @@
+/**
+ * Running time (in minutes, estimate):
+ * Proved?(Y/N):
+ * KeYmaera X Version:
+ *
+ * Please do not put personally identifiable information in any file that you
+ * submit. Any resulting implicit bias can and will be used against your grade.
+ */
+
+Functions
+  Real rad;
+  Real T;
+End.
+
+ProgramVariables
+  Real x;
+  Real y;
+  Real v;
+  Real acc, accl;
+  Real accx, accy;
+  Real vx, vy;
+  Real w, b;
+End.
+
+Problem
+  (
+    /* Requires (initial conditions) */
+    rad > 0 & x^2+y^2=rad^2 & w=v/rad & vx=-w*y & vy=w*x & T>0 & b=acc/rad & accx=vx*b/w & accy=vy/w*b
+  )
+  ->
+  [
+  {
+    /* assign acc by an nondeterministic value */
+    {{acc' = 1} ++ {acc' = -1}}
+    {acc_0 := acc;}
+    {b := acc/rad;}
+    {accx := vx*b/w; accy := vy*b/w;}
+    {t := 0;}
+    {x' = vx, y' = vy, vx' = accx - w*vy, vy' = accy + w*vx, accx' = -b*vy, accy'=b*vx, w'=b, t'=1 & t<= T}
+    }*  @invariant(x^2+y^2=rad^2 & vy=w*x & vx=-w*y)
+  ] (x^2+y^2=rad^2) /* Safety condition */
+End.

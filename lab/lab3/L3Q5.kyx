@@ -1,0 +1,44 @@
+/**
+ * Running time (in minutes, estimate):
+ * Proved?(Y/N):
+ * KeYmaera X Version:
+ *
+ * Please do not put personally identifiable information in any file that you
+ * submit. Any resulting implicit bias can and will be used against your grade.
+ */
+
+Functions
+  Real rad;
+  Real T;
+  Real A;
+  Real B;
+  Real l;
+
+  Real ox; /* obstacle position (for bonus question only) */
+  Real oy;
+End.
+
+ProgramVariables
+  Real t;
+  Real x;
+  Real y;
+  Real v;
+  Real acc;
+  Real w, b;
+  Real accx, accy;
+  Real vx, vy;
+End.
+
+Problem
+  (
+    /* Requires (initial conditions) */
+
+    )
+  ->
+  [
+    {
+     /* Control */
+     /* ODEs */
+    }*@invariant()
+  ] () /* Safety condition */
+End.

@@ -1,0 +1,18 @@
+﻿/* Exported from KeYmaera X v4.9.3 */
+
+Theorem "12: Exponential Difference"
+Description "Example 12.4".
+
+ProgramVariables
+  Real x;
+End.
+
+Problem
+  x!=0 -> [{x'=-x}]x!=0
+End.
+
+Tactic "12: Exponential Difference: Proof"
+implyR(1) ; dG("y'=y", "x*y=1", 1) ; dIRule(1.0) ; Dassignb(1.0.1.1.0.0) ; Dassignb(1.0.1.1.0.0) ; QE
+End.
+
+End.

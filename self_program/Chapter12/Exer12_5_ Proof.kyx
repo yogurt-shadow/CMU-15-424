@@ -1,0 +1,50 @@
+﻿/* Exported from KeYmaera X v4.9.3 */
+
+Theorem "Exer12_5"
+
+Description "Parachute".
+
+Definitions
+    Real g;
+    Real a, p;
+    Real m;
+    Real e;
+End.
+
+ProgramVariables
+    Real x;
+    Real r;
+    Real t;
+    Real v;
+End.
+
+Problem
+  g > 0 & r = a & a > 0 & p > a & x >= 0 & v < 0 & v > m & m < 0 & m^2*p=g
+  ->
+  [
+      {
+      {?r = a & v < 0 & v > m & v-g*e > m; ++ r := p;}
+      t := 0;
+      {x' = v, v' = -g+r*v^2, t' = 1 & (t <= e & x >= 0 & v < 0)}
+      }*  @invariant(v > m)
+      ](x = 0 -> v >= m)
+End.
+
+Tactic "Exer12_5: Proof"
+implyR(1) ; loop("v>m()", 1) ; <(
+  QE,
+  QE,
+  composeb(1) ; choiceb(1) ; andR(1) ; <(
+    testb(1) ; implyR(1) ; composeb(1) ; assignb(1) ; discreteGhost("v", "v0", 1) ; dC("v>=v0-g()*t", 1) ; <(
+      dW(1) ; QE,
+      dIRule(1) ; <(
+        QE,
+        unfold ; QE
+        )
+      ),
+    assignb(1) ; composeb(1) ; assignb(1) ; dG("y'=-p()/2*(v+m())*y", "(v-m())*y^2=1", 1) ; dIRule(1.0) ; Dassignb(1.0.1.1.0.0) ; Dassignb(1.0.1.1.0.0) ; Dassignb(1.0.1.1.0.0) ; Dassignb(1.0.1.1.0.0) ; QE
+    )
+  )
+End.
+
+End.

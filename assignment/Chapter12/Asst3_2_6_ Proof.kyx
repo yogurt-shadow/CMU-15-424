@@ -1,0 +1,20 @@
+﻿/* Exported from KeYmaera X v4.9.3 */
+
+Theorem "Asst3_2_6"
+
+Problem
+  3*x^3*y+2 >=12
+  ->
+  [
+      {x'=-12*x*y*z, y'=36*y^2*z}
+      ](3*x^3*y+2>=0)
+End.
+
+Tactic "Asst3_2_6: Proof"
+implyR(1) ; dIRule(1) ; <(
+  QE,
+  unfold ; QE
+  )
+End.
+
+End.

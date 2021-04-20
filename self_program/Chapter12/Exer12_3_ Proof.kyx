@@ -1,0 +1,24 @@
+﻿/* Exported from KeYmaera X v4.9.3 */
+
+Theorem "Exer12_3"
+
+Problem
+  x >= 0 & 2*g*x = 2*g*H - v^2 & g > 0
+  ->
+ [      
+     t:= 0;
+     {x' = v, v' = -g & x >= 0}
+      ](2*g*x = 2*g*H-v^2 & g > 0)
+End.
+
+Tactic "Exer12_3: Proof"
+implyR(1) ; composeb(1) ; assignb(1) ; discreteGhost("v", "v0", 1) ; discreteGhost("x", "x0", 1) ; dC("2*g*x0=2*g*H-v0^2", 1) ; <(
+  dIRule(1) ; <(
+    QE,
+    unfold ; QE
+    ),
+  GV(1) ; QE
+  )
+End.
+
+End.

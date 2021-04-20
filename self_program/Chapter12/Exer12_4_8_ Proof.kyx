@@ -1,0 +1,17 @@
+﻿/* Exported from KeYmaera X v4.9.3 */
+
+Theorem "Exer12_4_8"
+
+Problem
+  x > 0
+  ->
+  [
+      {x' = x^2}
+      ](x > 0)
+End.
+
+Tactic "Exer12_4_8: Proof"
+implyR(1) ; dG("y'=-x*y/2", "x*y^2=1", 1) ; dIRule(1.0) ; Dassignb(1.0.1.1.0.0) ; Dassignb(1.0.1.1.0.0) ; QE
+End.
+
+End.

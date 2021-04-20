@@ -1,0 +1,18 @@
+﻿/* Exported from KeYmaera X v4.9.3 */
+
+Theorem "12: Exponential at Equilibrium"
+Description "Example 12.6 Exponential equilibrium".
+
+ProgramVariables
+ Real x;
+End.
+
+Problem
+ x=0 -> [{x'=x}]x=0
+End.
+
+Tactic "12: Exponential at Equilibrium: Proof"
+implyR(1) ; dG("y'=-y", "y>0&x*y=0", 1) ; boxAnd(1.0) ; dIRule(1.0.1) ; Dassignb(1.0.1.1.1.0.0) ; Dassignb(1.0.1.1.1.0.0) ; dG("z'=z/2", "y*z^2=1", 1.0.0) ; dIRule(1.0.0.0) ; Dassignb(1.0.0.0.1.1.0.0.0) ; Dassignb(1.0.0.0.1.1.0.0.0) ; Dassignb(1.0.0.0.1.1.0.0.0) ; QE
+End.
+
+End.

@@ -1,0 +1,22 @@
+﻿/* Exported from KeYmaera X v4.9.3 */
+
+Theorem "12: Shifted Exponentials"
+Description "Example 12.7".
+
+ProgramVariables
+  Real x;
+End.
+
+Problem
+  x^3 > -1
+  ->
+  [
+      {x' = -x - 1}
+      ](x^3 > -1)
+End.
+
+Tactic "12: Shifted Exponentials: Proof"
+implyR(1) ; dG("y'=y/2", "(x+1)*y^2>0", 1) ; dIRule(1.0) ; Dassignb(1.0.1.1.0.0) ; Dassignb(1.0.1.1.0.0) ; QE
+End.
+
+End.

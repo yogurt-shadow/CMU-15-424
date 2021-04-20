@@ -1,0 +1,38 @@
+﻿/* Exported from KeYmaera X v4.9.3 */
+
+Theorem "Asst3_3_3"
+
+Problem
+  x=1 & y=5
+  ->
+  [
+      {x'=x^2+1, y'=y^2*x*z, z'=85*x^2*y^3*z^15 & z>=1}
+      ]x*y>=1
+End.
+
+Tactic "Asst3_3_3: Proof"
+implyR(1) ; dC("x>=0", 1) ; <(
+  dC("y>=0", 1) ; <(
+    dC("x^2+1+y*z>=0", 1) ; <(
+      dIRule(1) ; <(
+        QE,
+        unfold ; QE
+        ),
+      dIRule(1) ; <(
+        QE,
+        unfold ; QE
+        )
+      ),
+    dIRule(1) ; <(
+      QE,
+      unfold ; QE
+      )
+    ),
+  dIRule(1) ; <(
+    QE,
+    unfold ; QE
+    )
+  )
+End.
+
+End.

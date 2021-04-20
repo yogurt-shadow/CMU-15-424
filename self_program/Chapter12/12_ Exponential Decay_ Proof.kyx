@@ -1,0 +1,22 @@
+﻿/* Exported from KeYmaera X v4.9.3 */
+
+Theorem "12: Exponential Decay"
+Description "12.3.4 Differential ghost as counterweight".
+
+ProgramVariables
+  Real x;
+End.
+
+Problem
+  x > 1
+  ->
+  [
+      {x' = -x}
+      ](x > 0)
+End.
+
+Tactic "12: Exponential Decay: Proof"
+implyR(1) ; dG("y'=y/2", "x*y^2=1", 1) ; dIRule(1.0) ; Dassignb(1.0.1.1.0.0) ; Dassignb(1.0.1.1.0.0) ; QE
+End.
+
+End.

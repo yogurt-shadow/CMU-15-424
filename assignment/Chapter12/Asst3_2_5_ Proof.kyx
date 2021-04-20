@@ -1,0 +1,20 @@
+﻿/* Exported from KeYmaera X v4.9.3 */
+
+Theorem "Asst3_2_5"
+
+Problem
+  3*x*y-2*x!=k
+  ->
+  [
+      {x' = 2*k*x, y'=-2*k*y, k'=-4*k*x}
+      ](3*x*y-2*x!=k)
+End.
+
+Tactic "Asst3_2_5: Proof"
+implyR(1) ; dIRule(1) ; <(
+  id,
+  unfold ; QE
+  )
+End.
+
+End.

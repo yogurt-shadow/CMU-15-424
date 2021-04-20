@@ -1,0 +1,20 @@
+﻿/* Exported from KeYmaera X v4.9.3 */
+
+Theorem "Asst3_2_1"
+
+Problem
+  x + y + z = 10
+  ->
+  [
+      {x' = -1, y'=2, z'=-1}
+      ](x+y+z = 10)
+End.
+
+Tactic "Asst3_2_1: Proof"
+implyR(1) ; dIRule(1) ; <(
+  id,
+  unfold ; QE
+  )
+End.
+
+End.

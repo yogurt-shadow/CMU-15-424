@@ -1,0 +1,29 @@
+/**
+ * Running time (in minutes, estimate):
+ * Proved?(Y/N):
+ * KeYmaera X Version:
+ *
+ * Please do not put personally identifiable information in any file that you
+ * submit. Any resulting implicit bias can and will be used against your grade.
+ */
+
+Functions
+  Real rad;
+End.
+
+ProgramVariables
+  Real x;
+  Real y;
+  Real v;
+End.
+
+Problem
+  (
+    /* Requires (initial conditions) */
+    rad > 0 & x^2+y^2=rad^2 & w=v/rad & vx=-w*y & vy=w*x
+  )
+  ->
+  [
+    {x' = vx, y' = vy, vx' = -w*vy, vy'=w*vx}
+  ] (x^2+y^2=rad^2) /* Safety condition */
+End.

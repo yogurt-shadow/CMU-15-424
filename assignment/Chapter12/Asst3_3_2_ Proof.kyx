@@ -1,0 +1,32 @@
+﻿/* Exported from KeYmaera X v4.9.3 */
+
+Theorem "Asst3_3_2"
+
+Problem
+  x=7 & y>=2 & z=12
+  ->
+  [
+      {x'=3*y, y'=y^4, z'=x-3}
+      ](z>=3)
+End.
+
+Tactic "Asst3_3_2: Proof"
+implyR(1) ; dC("y>=0", 1) ; <(
+  dC("x>=3", 1) ; <(
+    dIRule(1) ; <(
+      QE,
+      unfold ; QE
+      ),
+    dIRule(1) ; <(
+      QE,
+      unfold ; QE
+      )
+    ),
+  dIRule(1) ; <(
+    QE,
+    unfold ; QE
+    )
+  )
+End.
+
+End.

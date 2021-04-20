@@ -1,0 +1,29 @@
+﻿/* Exported from KeYmaera X v4.9.3 */
+
+Theorem "rec7exam1"
+
+Description "James Bond the Parachuter".
+
+Definitions
+    Real c;
+    Real g;
+    Real m;
+End.
+
+ProgramVariables
+    Real v;
+End.
+
+Problem
+  m > 0 & m^2*c=g & v+m<0
+  ->
+  [
+      {v'=c*v^2-g}
+      ](v+m<0)
+End.
+
+Tactic "rec7exam1: Proof"
+implyR(1) ; dG("y'=(-1)/2*c()*(v-m())*y", "(v+m())*y^2=(-1)", 1) ; dIRule(1.0) ; Dassignb(1.0.1.1.0.0) ; Dassignb(1.0.1.1.0.0) ; QE
+End.
+
+End.

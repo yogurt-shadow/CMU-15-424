@@ -1,0 +1,46 @@
+﻿/* Exported from KeYmaera X v4.9.3 */
+
+Theorem "L3Q1"
+/**
+ * Running time (in minutes, estimate):
+ * Proved?(Y/N):
+ * KeYmaera X Version:
+ *
+ * Please do not put personally identifiable information in any file that you
+ * submit. Any resulting implicit bias can and will be used against your grade.
+ */
+
+ProgramVariables
+  Real x;
+  Real y;
+  Real z;
+End.
+
+Problem
+  (x >= y & y >= z & z >= 0)
+  ->
+  [
+    {x' = y, y' = z, z' = x^2}
+  ](x >= 0)
+End.
+
+Tactic "L3Q1: Proof"
+implyR(1) ; dC("z>=0", 1) ; <(
+  dC("y>=0", 1) ; <(
+    dIRule(1) ; <(
+      QE,
+      unfold
+      ),
+    dIRule(1) ; <(
+      QE,
+      unfold
+      )
+    ),
+  dIRule(1) ; <(
+    QE,
+    unfold ; QE
+    )
+  )
+End.
+
+End.

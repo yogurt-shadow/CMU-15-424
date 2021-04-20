@@ -1,0 +1,49 @@
+﻿/* Exported from KeYmaera X v4.9.3 */
+
+Theorem "rec7exam2"
+
+Description "Ping Pong with Air Resistance".
+
+Definitions
+    Real T;
+    Real l, r;
+End.
+
+ProgramVariables
+    Real x, v, t;
+End.
+
+Problem
+  v>0 & t=0 & x >=l & x+v*T <= r
+  ->
+  [
+      {x' = v, v' = -v^2, t'=1 & t <= T}
+      ](x >= l & x <= r)
+End.
+
+Tactic "rec7exam2: Proof"
+implyR(1) ; boxAnd(1) ; andR(1) ; <(
+  dC("v>0", 1) ; <(
+    dIRule(1) ; <(
+      QE,
+      unfold ; QE
+      ),
+    dG("y'=v*y/2", "v*y^2=1", 1) ; dIRule(1.0) ; Dassignb(1.0.1.1.0.0) ; Dassignb(1.0.1.1.0.0) ; Dassignb(1.0.1.1.0.0.1) ; Dassignb(1.0.1.1.0.0) ; QE
+    ),
+  discreteGhost("v", "v0", 1) ; dC("v<=v0", 1) ; <(
+    discreteGhost("x", "x0", 1) ; dC("x<=x0+v0*t", 1) ; <(
+      dW(1) ; QE,
+      dIRule(1) ; <(
+        QE,
+        unfold ; QE
+        )
+      ),
+    dIRule(1) ; <(
+      QE,
+      unfold ; QE
+      )
+    )
+  )
+End.
+
+End.
