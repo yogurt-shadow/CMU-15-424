@@ -19,56 +19,31 @@ ProgramVariables
   Real x;
   Real y;
   Real v;
-  Real acc, accl;
-  Real accx, accy;
-  Real vx, vy;
-  Real w, b;
+  Real acc;
 End.
 
 Problem
   (
     /* Requires (initial conditions) */
-    rad > 0 & x^2+y^2=rad^2 & w=v/rad & vx=-w*y & vy=w*x & T>0 & b=acc/rad & accx=vx*b/w & accy=vy/w*b
+    x^2 + y^2 = rad^2
   )
   ->
   [
   {
     /* assign acc by an nondeterministic value */
     {{acc' = 1} ++ {acc' = -1}}
-    {acc_0 := acc;}
-    {b := acc/rad;}
-    {accx := vx*b/w; accy := vy*b/w;}
-    {t := 0;}
-    {x' = vx, y' = vy, vx' = accx - w*vy, vy' = accy + w*vx, accx' = -b*vy, accy'=b*vx, w'=b, t'=1 & t<= T}
-    }*  @invariant(x^2+y^2=rad^2 & vy=w*x & vx=-w*y)
+    {x' = -v*y/rad, y' = v*x/rad, v' = acc}
+    }*  @invariant(x^2+y^2=rad^2)
   ] (x^2+y^2=rad^2) /* Safety condition */
 End.
 
 Tactic "L3Q3: Proof"
-implyR(1) ; loop("x^2+y^2=rad()^2&vy=w*x&vx=-w*y", 1) ; <(
-  QE,
-  QE,
-  composeb(1) ; GV(1) ; allR(1) ; composeb(1) ; assignb(1) ; composeb(1) ; composeb(1.1) ; composeb(1.1) ; assignb(1.1) ; assignb(1) ; allR(1) ; implyR(1) ; assignb(1) ; composeb(1) ; assignb(1) ; dC("w*accx=vx*acc/rad()&w*accy=vy*acc/rad()", 1) ; <(
-    dC("accx=-acc/rad()*y&accy=acc/rad()*x", 1) ; <(
-      dC("vx=-w*y&vy=w*x", 1) ; <(
-        dIRule(1) ; <(
-          QE,
-          unfold ; QE
-          ),
-        dIRule(1) ; <(
-          QE,
-          unfold ; QE
-          )
-        ),
-      dIRule(1) ; <(
-        QE,
-        unfold ; QE
-        )
-      ),
-    dIRule(1) ; <(
-      QE,
-      unfold ; QE
-      )
+implyR(1) ; loop("x^2+y^2=rad()^2", 1) ; <(
+  id,
+  id,
+  composeb(1) ; GV(1) ; allR(1) ; dIRule(1) ; <(
+    id,
+    unfold ; QE
     )
   )
 End.

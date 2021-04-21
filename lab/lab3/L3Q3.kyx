@@ -16,27 +16,20 @@ ProgramVariables
   Real x;
   Real y;
   Real v;
-  Real acc, accl;
-  Real accx, accy;
-  Real vx, vy;
-  Real w, b;
+  Real acc;
 End.
 
 Problem
   (
     /* Requires (initial conditions) */
-    rad > 0 & x^2+y^2=rad^2 & w=v/rad & vx=-w*y & vy=w*x & T>0 & b=acc/rad & accx=vx*b/w & accy=vy/w*b
+    x^2 + y^2 = rad^2
   )
   ->
   [
   {
     /* assign acc by an nondeterministic value */
     {{acc' = 1} ++ {acc' = -1}}
-    {acc_0 := acc;}
-    {b := acc/rad;}
-    {accx := vx*b/w; accy := vy*b/w;}
-    {t := 0;}
-    {x' = vx, y' = vy, vx' = accx - w*vy, vy' = accy + w*vx, accx' = -b*vy, accy'=b*vx, w'=b, t'=1 & t<= T}
-    }*  @invariant(x^2+y^2=rad^2 & vy=w*x & vx=-w*y)
+    {x' = -v*y/rad, y' = v*x/rad, v' = acc}
+    }*  @invariant(x^2+y^2=rad^2)
   ] (x^2+y^2=rad^2) /* Safety condition */
 End.

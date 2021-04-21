@@ -1,0 +1,89 @@
+﻿/* Exported from KeYmaera X v4.9.3 */
+
+Theorem "L3Q5"
+/**
+ * Running time (in minutes, estimate):
+ * Proved?(Y/N):
+ * KeYmaera X Version:
+ *
+ * Please do not put personally identifiable information in any file that you
+ * submit. Any resulting implicit bias can and will be used against your grade.
+ */
+
+Functions
+  Real rad;
+  Real T;
+  Real A;
+  Real B;
+
+  Real ox; /* obstacle position (for bonus question only) */
+  Real oy;
+End.
+
+ProgramVariables
+  Real t;
+  Real x;
+  Real y;
+  Real v;
+  Real acc;
+End.
+
+Problem
+  (
+    /* Requires (initial conditions) */
+      rad > 0 & ox = -rad & oy = 0 & x^2+y^2 = rad^2 & x!=ox & A > 0 & B > 0 & v = 0
+    )
+  ->
+  [
+    {
+     /* Control */
+     {acc := -B; ++ ?v*T + A*T^2/2 + (v+A*T)^2/(2*B) < x-ox; acc := A;}
+     /* ODEs */
+     {t := 0;}
+     {x' = -v*y/rad, y' = v*x/rad, v' = acc, t' = 1 & (v >= 0 & t <= T)}
+    }*@invariant(x > ox & x^2 + y^2 = rad^2 & 2*B*(x-ox) > v^2)
+  ] (!(x = ox & y = oy)) /* Safety condition */
+End.
+
+Tactic "L3Q5: Proof"
+implyR(1) ; loop("x>ox()&x^2+y^2=rad()^2&2*B()*(x-ox())>v^2", 1) ; <(
+  QE,
+  QE,
+  composeb(1) ; composeb(1.1) ; assignb(1.1) ; choiceb(1) ; andR(1) ; <(
+    assignb(1) ; allR(1) ; implyR(1) ; dC("x^2+y^2=rad()^2", 1) ; <(
+      dC("2*B()*(x-ox())>v^2", 1) ; <(
+        dW(1) ; QE,
+        dIRule(1) ; <(
+          QE,
+          unfold ; QE
+          )
+        ),
+      dIRule(1) ; <(
+        QE,
+        unfold ; QE
+        )
+      ),
+    composeb(1) ; testb(1) ; implyR(1) ; assignb(1) ; allR(1) ; implyR(1) ; discreteGhost("v", "v0", 1) ; dC("v=v0+A()*t", 1) ; <(
+      discreteGhost("x", "x0", 1) ; dC("x^2+y^2=rad()^2", 1) ; <(
+        dC("x0-x<=v0*t+A()*t^2/2", 1) ; <(
+          dW(1) ; QE,
+          dIRule(1) ; <(
+            QE,
+            unfold ; QE
+            )
+          ),
+        dIRule(1) ; <(
+          QE,
+          unfold ; QE
+          )
+        ),
+      dIRule(1) ; <(
+        QE,
+        unfold ; QE
+        )
+      )
+    )
+  )
+End.
+
+End.

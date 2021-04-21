@@ -20,10 +20,10 @@ End.
 Problem
   (
     /* Requires (initial conditions) */
-    rad > 0 & x^2+y^2=rad^2 & w=v/rad & vx=-w*y & vy=w*x
+    x^2 + y^2 = rad^2
   )
   ->
   [
-    {x' = vx, y' = vy, vx' = -w*vy, vy'=w*vx}
+    {x' = -v*y/rad, y' = v*x/rad}
   ] (x^2+y^2=rad^2) /* Safety condition */
 End.

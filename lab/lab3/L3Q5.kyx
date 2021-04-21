@@ -12,7 +12,6 @@ Functions
   Real T;
   Real A;
   Real B;
-  Real l;
 
   Real ox; /* obstacle position (for bonus question only) */
   Real oy;
@@ -24,21 +23,21 @@ ProgramVariables
   Real y;
   Real v;
   Real acc;
-  Real w, b;
-  Real accx, accy;
-  Real vx, vy;
 End.
 
 Problem
   (
     /* Requires (initial conditions) */
-
+      rad > 0 & ox = -rad & oy = 0 & x^2+y^2 = rad^2 & x!=ox & A > 0 & B > 0 & v = 0
     )
   ->
   [
     {
      /* Control */
+     {acc := -B; ++ ?v*T + A*T^2/2 + (v+A*T)^2/(2*B) < x-ox; acc := A;}
      /* ODEs */
-    }*@invariant()
-  ] () /* Safety condition */
+     {t := 0;}
+     {x' = -v*y/rad, y' = v*x/rad, v' = acc, t' = 1 & (v >= 0 & t <= T)}
+    }*@invariant(x > ox & x^2 + y^2 = rad^2 & 2*B*(x-ox) > v^2)
+  ] (!(x = ox & y = oy)) /* Safety condition */
 End.

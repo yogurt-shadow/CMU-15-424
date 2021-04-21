@@ -23,24 +23,18 @@ End.
 Problem
   (
     /* Requires (initial conditions) */
-    rad > 0 & x^2+y^2=rad^2 & w=v/rad & vx=-w*y & vy=w*x
+    x^2 + y^2 = rad^2
   )
   ->
   [
-    {x' = vx, y' = vy, vx' = -w*vy, vy'=w*vx}
+    {x' = -v*y/rad, y' = v*x/rad}
   ] (x^2+y^2=rad^2) /* Safety condition */
 End.
 
 Tactic "L3Q2: Proof"
-implyR(1) ; dC("vx=-w*y&vy=w*x", 1) ; <(
-  dIRule(1) ; <(
-    QE,
-    unfold ; QE
-    ),
-  dIRule(1) ; <(
-    QE,
-    unfold ; QE
-    )
+implyR(1) ; dIRule(1) ; <(
+  id,
+  unfold ; QE
   )
 End.
 
