@@ -1,0 +1,27 @@
+﻿/* Exported from KeYmaera X v4.9.3 */
+
+Theorem "Exer16_7_4"
+
+Problem
+  x >= 0
+  ->
+  [
+      {
+         {x := x + 1;
+             ++
+             {x' = -2}
+         }
+         {x' = 1}^@
+      }*  @invariant(x >= 0)
+      ](x >= 0)
+End.
+
+Tactic "Exer16_7_4: Proof"
+implyR(1) ; loop("x>=0", 1) ; <(
+  id,
+  composeb(1) ; GV(1) ; dualDirectb(1.0) ; solve(1.0) ; QE,
+  id
+  )
+End.
+
+End.

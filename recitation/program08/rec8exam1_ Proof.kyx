@@ -1,0 +1,28 @@
+﻿/* Exported from KeYmaera X v4.9.3 */
+
+Theorem "rec8exam1"
+
+Problem
+  x = 0
+  ->
+  <
+  {
+  {
+      {
+  {x := 1; ++ v := 1;}
+  {x' = v}
+      }^@
+  }*  @invariant(x = 0)
+  }^@
+  >(x = 0)
+End.
+
+Tactic "rec8exam1: Proof"
+implyR(1) ; dualDirectd(1) ; loop("x=0", 1) ; <(
+  id,
+  dualDirectb(1) ; composed(1) ; choiced(1) ; orR(1) ; hideR(1=="<x:=1;><{x'=v}>x=0") ; assignd(1) ; solve(1) ; QE,
+  id
+  )
+End.
+
+End.

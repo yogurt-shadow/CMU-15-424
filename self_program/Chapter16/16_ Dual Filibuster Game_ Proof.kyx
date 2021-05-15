@@ -1,0 +1,24 @@
+﻿/* Exported from KeYmaera X v4.9.3 */
+
+Theorem "16: Dual Filibuster Game"
+Description "Example 16.4".
+
+ProgramVariables
+  Real x;
+End.
+
+Problem
+  x=0
+ ->
+ <{{{x:=0; ++ x:=1;}^@}*}^@> x=0
+End.
+
+Tactic "16: Dual Filibuster Game: Proof"
+implyR(1) ; dualDirectd(1) ; loop("x=0", 1) ; <(
+  id,
+  dualDirectb(1) ; choiced(1) ; assignd(1.0) ; assignd(1.1) ; QE,
+  id
+  )
+End.
+
+End.

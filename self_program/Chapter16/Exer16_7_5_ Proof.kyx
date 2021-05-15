@@ -1,0 +1,38 @@
+﻿/* Exported from KeYmaera X v4.9.3 */
+
+Theorem "Exer16_7_5"
+
+Problem
+  x >= 0
+  ->
+  [
+      {
+        x := x + 1;
+        ++
+        {
+            {
+            t := 0;
+            {x' = -5, t' = 1 & t <= 1}
+            }^@
+            ++
+            {x' = 2}^@
+        }^@
+      }* @invariant(x >= 0)
+      ](x >= 0)
+End.
+
+Tactic "Exer16_7_5: Proof"
+implyR(1) ; loop("x>=0", 1) ; <(
+  id,
+  choiceb(1) ; andR(1) ; <(
+    assignb(1) ; QE,
+    dualDirectb(1) ; choiced(1) ; orR(1) ; hideR(1=="<{t:=0;{x'=(-5),t'=1&t<=1}}^@>x>=0") ; dualDirectd(1) ; dIRule(1) ; <(
+      QE,
+      Dassignb(1) ; QE
+      )
+    ),
+  id
+  )
+End.
+
+End.

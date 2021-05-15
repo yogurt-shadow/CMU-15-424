@@ -1,0 +1,23 @@
+﻿/* Exported from KeYmaera X v4.9.3 */
+
+Theorem "Exer16_7_3"
+
+Problem
+  [
+      {x := x^2; ++ x := -x^2;}^@
+      ++
+      {{x' = 1}
+          ++
+          {x' = -2}
+      }^@
+      ]x <= 0
+End.
+
+Tactic "Exer16_7_3: Proof"
+choiceb(1) ; andR(1) ; <(
+  dualDirectb(1) ; choiced(1) ; orR(1) ; hideR(1=="<x:=x^2;>x<=0") ; assignd(1) ; QE,
+  dualDirectb(1) ; choiced(1) ; orR(1) ; hideR(1=="<{x'=1}>x<=0") ; solve(1) ; QE
+  )
+End.
+
+End.

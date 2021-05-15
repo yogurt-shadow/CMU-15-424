@@ -1,0 +1,28 @@
+﻿/* Exported from KeYmaera X v4.9.3 */
+
+Theorem "16: Goalie in Robot Soccer"
+Description "Proof for Example 14.6".
+
+ProgramVariables
+  Real x, y;     /* x/y-coordinate of ball */
+  Real v, w;     /* ball's velocity in x/y-direction */
+  Real g;        /* y-coordinate of goalie lateral in goal */
+  Real u;        /* velocity of goalie */
+End.
+
+Problem
+  (x/v)^2*(u-w)^2<=1 & x<0&v>0&y=g ->
+  <{w:=w; ++ w:=-w;}^@;
+   {{u:=u; ++ u:=-u;}; {x'=v,y'=w,g'=u}}> x^2+(y-g)^2<=1
+End.
+
+Illustration "https://lfcps.org/info/fig-goalie.png".
+
+Tactic "16: Goalie in Robot Soccer: Proof"
+implyR(1) ; composed(1) ; composed(1.1) ; dualDirectd(1) ; solve(1.1.1) ; choiced(1.1) ; choiceb(1) ; assignd(1.0.1.0) ; assignd(1.1.1.0) ; assignb(1.1) ; assignb(1.0) ; andR(1) ; <(
+  assignd(1.1) ; QE,
+  assignd(1.1) ; QE
+  )
+End.
+
+End.

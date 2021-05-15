@@ -1,0 +1,23 @@
+﻿/* Exported from KeYmaera X v4.9.3 */
+
+Theorem "Exer16_1_7"
+
+Problem
+  <
+  {
+    x := -x;
+    ++
+    {
+       x := x + 2; 
+        ++
+        {x' = 2}^@
+    }^@
+  }*
+  >(x >= 0)
+End.
+
+Tactic "Exer16_1_7: Proof"
+iterated(1) ; iterated(1.1.1) ; orR(1) ; choiced(2) ; orR(2) ; hideR(3=="<{x:=x+2;++{{x'=2}}^@}^@>(x>=0|<x:=-x;++{x:=x+2;++{{x'=2}}^@}^@><{x:=-x;++{x:=x+2;++{{x'=2}}^@}^@}*>x>=0)") ; assignd(2) ; orR(2) ; hideR(3=="<x:=-x;++{x:=x+2;++{{x'=2}}^@}^@><{x:=-x;++{x:=x+2;++{{x'=2}}^@}^@}*>x>=0") ; QE
+End.
+
+End.

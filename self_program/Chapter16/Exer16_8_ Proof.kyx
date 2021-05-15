@@ -1,0 +1,22 @@
+﻿/* Exported from KeYmaera X v4.9.3 */
+
+Theorem "Exer16_8"
+
+Problem
+  [
+      {x := 1; ++ x := -1;}^@
+      ](x = 1)
+      &
+      [
+          {x := 1; ++ x := -1;}^@
+          ](x = -1)
+End.
+
+Tactic "Exer16_8: Proof"
+andR(1) ; <(
+  dualDirectb(1) ; choiced(1) ; orR(1) ; assignd(1) ; hideR(2=="<x:=(-1);>x=1") ; QE,
+  dualDirectb(1) ; choiced(1) ; orR(1) ; hideR(1=="<x:=1;>x=(-1)") ; assignd(1) ; QE
+  )
+End.
+
+End.

@@ -1,0 +1,31 @@
+﻿/* Exported from KeYmaera X v4.9.3 */
+
+Theorem "Exer16_10"
+
+Problem
+  a > 0 & b > 0 & b > a & (x - y)^2 >= 1
+  ->
+  [
+      {
+      {v := a; ++ v := -a; ++ v := 0;}
+      {w := b; ++ w := -b; ++ w := 0;}^@
+      {x ' =v, y' = w}
+      }*  @invariant((x - y)^2 >= 1 & b > a & a > 0)
+      ](x - y)^2 >= 1
+End.
+
+Tactic "Exer16_10: Proof"
+implyR(1) ; loop("(x-y)^2>=1&b>a&a>0", 1) ; <(
+  QE,
+  composeb(1) ; composeb(1.1) ; dualDirectb(1.1) ; solve(1.1.1) ; choiceb(1) ; andR(1) ; <(
+    assignb(1) ; choiced(1) ; orR(1) ; choiced(2) ; orR(2) ; hideR(3=="<w:=0;>\forall t_ (t_>=0->(a*t_+x-(w*t_+y))^2>=1&b>a&a>0)") ; assignd(1) ; assignd(2) ; QE,
+    choiceb(1) ; andR(1) ; <(
+      assignb(1) ; choiced(1) ; assignd(1.0) ; orR(1) ; choiced(2) ; orR(2) ; hideR(3=="<w:=0;>\forall t_ (t_>=0->((-a)*t_+x-(w*t_+y))^2>=1&b>a&a>0)") ; assignd(2) ; QE,
+      assignb(1) ; choiced(1) ; orR(1) ; choiced(2) ; orR(2) ; hideR(2=="<w:=-b;>\forall t_ (t_>=0->(0*t_+x-(w*t_+y))^2>=1&b>a&a>0)") ; hideR(1=="<w:=b;>\forall t_ (t_>=0->(0*t_+x-(w*t_+y))^2>=1&b>a&a>0)") ; assignd(1) ; QE
+      )
+    ),
+  QE
+  )
+End.
+
+End.

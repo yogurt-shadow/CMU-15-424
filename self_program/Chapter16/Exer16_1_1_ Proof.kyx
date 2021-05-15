@@ -1,0 +1,17 @@
+﻿/* Exported from KeYmaera X v4.9.3 */
+
+Theorem "Exer16_1_1"
+
+Problem
+  <
+  x := -x;
+  ++
+  {x := x + 1; ++ x := x + 2;}^@
+  > (x > 0)
+End.
+
+Tactic "Exer16_1_1: Proof"
+choiced(1) ; dualDirectd(1.1) ; choiceb(1.1) ; assignb(1.1.0) ; assignb(1.1.1) ; assignd(1.0) ; QE
+End.
+
+End.

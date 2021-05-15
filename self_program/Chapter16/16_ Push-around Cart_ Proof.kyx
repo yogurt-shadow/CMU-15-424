@@ -1,0 +1,37 @@
+﻿/* Exported from KeYmaera X v4.9.3 */
+
+Theorem "16: Push-around Cart"
+Description "Proposition 16.1: Push-around carts are safe".
+
+ProgramVariables /* program variables may change their value over time */
+  Real x;        /* position of cart */
+  Real v;        /* velocity of cart */
+  Real a;        /* Angel's acceleration pushing/pulling the cart */
+  Real d;        /* Demon's acceleration pushing/pulling the cart */
+End.
+
+Problem
+  x>=0 & v>=0 ->
+  [{
+    {d:=1;++d:=-1;}^@
+    {a:=1;++a:=-1;}
+    {x'=v,v'=a+d}
+  }* @invariant(x>=0&v>=0)
+  ] x>=0
+End.
+
+Tactic "16: Push-around Cart: Proof"
+implyR(1) ; loop("x>=0&v>=0", 1) ; <(
+  QE,
+  composeb(1) ; composeb(1.1) ; dualDirectb(1) ; choiceb(1.1) ; assignb(1.1.0) ; assignb(1.1.1) ; choiced(1) ; orR(1) ; assignd(1) ; assignd(2) ; andR(1) ; <(
+    andR(2) ; <(
+      ODE(1),
+      ODE(1)
+      ),
+    ODE(1)
+    ),
+  QE
+  )
+End.
+
+End.

@@ -1,0 +1,31 @@
+﻿/* Exported from KeYmaera X v4.9.3 */
+
+Theorem "rec8exam2"
+
+Description "Verified Planar Avoidance with no restrictions to Angel".
+
+Problem
+  d > 0 & (x - a)^2 + (y - b)^2 > d
+  ->
+  <
+  {
+  {
+  {
+  {vx := *; vy := *;}^@
+  {va := *; vb := *;}
+  {x' = vx, y' = vy, a' = va, b' = vb}
+  }^@
+  }* @invariant(d > 0 & (x - a)^2 + (y - b)^2 > d)
+  }^@ 
+  >(d > 0 & (x - a)^2 + (y - b)^2 > d)
+End.
+
+Tactic "rec8exam2: Proof"
+implyR(1) ; dualDirectd(1) ; loop("d>0&(x-a)^2+(y-b)^2>d", 1) ; <(
+  QE,
+  dualDirectb(1) ; composed(1) ; composed(1.1) ; dualDirectd(1) ; GV(1) ; composed(1.0.0) ; randomd(1.0.0) ; randomd(1.0.0.0) ; solve(1.0.0.0.0) ; QE,
+  id
+  )
+End.
+
+End.

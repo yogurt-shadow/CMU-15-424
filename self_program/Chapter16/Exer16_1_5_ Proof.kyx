@@ -1,0 +1,24 @@
+﻿/* Exported from KeYmaera X v4.9.3 */
+
+Theorem "Exer16_1_5"
+
+Problem
+  <
+  x := -x;
+  ++
+  {
+      {x' = 1}^@
+      ++
+      {x' = 2}^@
+  }^@
+  >(x >= 0)
+End.
+
+Tactic "Exer16_1_5: Proof"
+choiced(1) ; orR(1) ; assignd(1) ; dualDirectd(2) ; choiceb(2) ; andR(2) ; <(
+  dualDirectb(2) ; solve(2) ; QE,
+  dualDirectb(2) ; solve(2) ; QE
+  )
+End.
+
+End.
