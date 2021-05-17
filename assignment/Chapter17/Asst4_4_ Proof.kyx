@@ -1,0 +1,32 @@
+﻿/* Exported from KeYmaera X v4.9.3 */
+
+Theorem "Asst4_4"
+
+Problem
+  x >= 1
+  ->
+  [
+      {x' = 2-2*x}
+      ]x >= 1
+End.
+
+Tactic "Asst4_4: Proof"
+implyR(1) ; dG("y'=y", "y>0&(x-1)*y^2>=0", 1) ; existsRmon("y>0", 1) ; <(
+  QE,
+  boxAnd(1) ; andR(1) ; <(
+    hideL(-1=="x>=1") ; dG("u'=-u/2", "y*u^2>0", 1) ; existsRmon("u>0", 1) ; <(
+      QE,
+      dIRule(1) ; <(
+        QE,
+        unfold ; QE
+        )
+      ),
+    dIRule(1) ; <(
+      QE,
+      unfold ; QE
+      )
+    )
+  )
+End.
+
+End.

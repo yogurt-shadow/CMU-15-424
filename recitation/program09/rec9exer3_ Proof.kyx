@@ -1,0 +1,20 @@
+﻿/* Exported from KeYmaera X v4.9.3 */
+
+Theorem "rec9exer3"
+
+Problem
+  x = 1 & t = 0
+  ->
+  [
+      {x' = x, t'= 1 & t <= 1}
+      ](x <= 1+t+t^2/2 + t^3/4)
+End.
+
+Tactic "rec9exer3: Proof"
+implyR(1) ; MR("-x+1+t+t^2/2+t^3/4>=0", 1) ; <(
+  dbx("1", 1),
+  QE
+  )
+End.
+
+End.

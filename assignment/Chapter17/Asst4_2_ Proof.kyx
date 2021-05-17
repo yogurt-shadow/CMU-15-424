@@ -1,0 +1,20 @@
+﻿/* Exported from KeYmaera X v4.9.3 */
+
+Theorem "Asst4_2"
+
+Problem
+  x = 1 & t = 0
+  ->
+  [
+      {x' = x, t' = 1 & x >= 1}
+      ](x >= 1 + t + t^2/2)
+End.
+
+Tactic "Asst4_2: Proof"
+implyR(1) ; MR("x-1-t-t^2/2>=0", 1) ; <(
+  dbx("1", 1),
+  QE
+  )
+End.
+
+End.

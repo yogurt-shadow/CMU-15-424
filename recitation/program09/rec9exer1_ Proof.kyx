@@ -1,0 +1,47 @@
+﻿/* Exported from KeYmaera X v4.9.3 */
+
+Theorem "rec9exer1"
+
+ProgramVariables
+  Real u;
+  Real v;
+End.
+
+Problem
+  (u^2+v^2 < 1 -> [{u'=-v+1/4*u*(1-u^2-v^2) , v'=u+1/4*v*(1-u^2-v^2) }] u^2+v^2 < 1) &
+(u^2+v^2 >= 1 -> [{u'=-v+1/4*u*(1-u^2-v^2) , v'=u+1/4*v*(1-u^2-v^2) }] u^2+v^2 >= 1) &
+(u^2+v^2 = 1 -> [{u'=-v+1/4*u*(1-u^2-v^2) , v'=u+1/4*v*(1-u^2-v^2) }] u^2+v^2 = 1) &
+(u = 0 & v = 0 -> [{u'=-v+1/4*u*(1-u^2-v^2) , v'=u+1/4*v*(1-u^2-v^2) }] (u = 0 & v = 0)) &
+(u^2 <= v^2+9/2 -> [{u'=-v+1/4*u*(1-u^2-v^2) , v'=u+1/4*v*(1-u^2-v^2) }] (u^2 <= v^2+9/2 ))
+
+End.
+
+Tactic "rec9exer1: Proof"
+andR(1) ; <(
+  implyR(1) ; MR("u^2+v^2-1 < 0", 1) ; <(
+    dbx("-(u^2+v^2)/2", 1),
+    QE
+    ),
+  andR(1) ; <(
+    implyR(1) ; MR("u^2+v^2-1>=0", 1) ; <(
+      dbx("-(u^2+v^2)/2", 1),
+      QE
+      ),
+    andR(1) ; <(
+      implyR(1) ; MR("u^2+v^2-1=0", 1) ; <(
+        dbx("-(u^2+v^2)/2", 1),
+        QE
+        ),
+      andR(1) ; <(
+        implyR(1) ; MR("u^2+v^2=0", 1) ; <(
+          dbx("-(u^2+v^2-1)/2", 1),
+          QE
+          ),
+        implyR(1) ; barrier(1)
+        )
+      )
+    )
+  )
+End.
+
+End.

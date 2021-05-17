@@ -1,0 +1,26 @@
+﻿/* Exported from KeYmaera X v4.9.3 */
+
+Theorem "Asst4_3"
+
+Problem
+  x^4 + y^4 = 0
+  ->
+  [
+      {x' = x-y^3, y' = x^3+y}
+      ](x^4 + y^4 = 0)
+End.
+
+Tactic "Asst4_3: Proof"
+implyR(1) ; dG("z'=(-4)*z", "z*(x^4+y^4)=0&z>0", 1) ; existsRmon("z>0", 1) ; <(
+  QE,
+  boxAnd(1) ; andR(1) ; <(
+    dIRule(1) ; <(
+      QE,
+      unfold ; QE
+      ),
+    hideL(-1=="x^4+y^4=0") ; dG("u'=2*u", "z*u^2>0", 1) ; dIRule(1.0) ; Dassignb(1.0.1.1.0.0.0.0) ; Dassignb(1.0.1.1.0.0.0.0) ; Dassignb(1.0.1.1.0.0.0.0) ; Dassignb(1.0.1.1.0.0.0.0) ; QE
+    )
+  )
+End.
+
+End.

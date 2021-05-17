@@ -1,0 +1,35 @@
+﻿/* Exported from KeYmaera X v4.9.3 */
+
+Theorem "Asst4_6"
+
+Problem
+  x = 0 & i = 0
+  ->
+  <
+  {
+  {
+      {
+      {i := i + 1;}
+      {
+          {x' = 1}^@
+          ++
+          {x' = 2}^@
+      }^@
+      }^@
+  }* @invariant(x >= 2*i & x <= 4*i)
+  }^@
+  >(x >=2*i & x<=4*i)
+End.
+
+Tactic "Asst4_6: Proof"
+implyR(1) ; dualDirectd(1) ; loop("x>=2*i&x<=4*i", 1) ; <(
+  QE,
+  dualDirectb(1) ; composed(1) ; assignd(1) ; dualDirectd(1) ; choiceb(1) ; andR(1) ; <(
+    dualDirectb(1) ; solve(1) ; QE,
+    dualDirectb(1) ; solve(1) ; QE
+    ),
+  id
+  )
+End.
+
+End.
