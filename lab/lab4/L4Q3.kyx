@@ -1,0 +1,62 @@
+/**
+ * Running time (in minutes, estimate):
+ * Proved?(Y/N):
+ * KeYmaera X Version:
+ *
+ * Please do not put personally identifiable information in any file that you
+ * submit. Any resulting implicit bias can and will be used against your grade.
+ */
+
+Functions
+  Real A;      /* Robot's max acceleration */
+  Real B;      /* Robot's max braking */
+  Real T;      /* Time-trigger limit on evolution */
+  Real minr;   /* Minimum turning radius of Robot */
+
+  Real rogv;     /* rougebot's linear velocity */
+  Real rogdx;    /* Unit vector in direction of travel, x roguebot */
+  Real rogdy;    /* Unit vector in direction of travel, y roguebot */
+
+  /* You can either decide to use a safety buffer between the center of the (non-moving)
+   * roguebot or to consider bounding circles around your robot and the
+   * roguebot.
+   */
+
+  Real buffer;   /* Required distance between center of robot and center of roguebot */
+  Real rogr;     /* Radius of bounding circle around roguebot shape */
+  Real r;        /* Radius of bounding circle around robot shape */
+End.
+
+ProgramVariables
+  Real x; /* Position of robot in x direction */
+  Real y; /* Position of robot in y direction */
+
+  Real dx;     /* Unit vector in direction of travel, x direction */
+  Real dy;     /* Unit vector in direction of travel, y direction */
+  Real trackr; /* Robot track radius */
+
+  Real v; /* Linear velocity of robot */
+  Real a; /* Linear acceleration of robot */
+
+  Real rogx; /* Position of center of roguebot in x direction */
+  Real rogy; /* Position of center of roguebot in y direction */
+
+  Real t; /* Time */
+End.
+
+Problem
+  (
+    ___
+  ) /* Initial conditions */
+  ->
+  [
+    {
+      /* Discrete control of robot and rogue-bots */
+      t := 0;
+      {_________________, /* Differential Equations */
+       t' = 1
+       & t <= T & v >= 0
+      }
+    }*@invariant(___) /* loop invariant */
+  ](___) /* Safety condition */
+End.

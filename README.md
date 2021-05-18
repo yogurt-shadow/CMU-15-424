@@ -15,4 +15,4 @@ Logical Foundations of Cyber-Physical Systems (Fa'19)
 + Update to Chapter14. 2021/4/23
 + Update to Chapter15. 2021/4/27
 + Update to Chapter16. 2021/5/15
-+ Update to Chapter17. 2021/5/17
++ Update to Chapter17. (Lab4) 2021/5/17

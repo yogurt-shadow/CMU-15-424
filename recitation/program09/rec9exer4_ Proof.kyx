@@ -1,0 +1,44 @@
+﻿/* Exported from KeYmaera X v4.9.3 */
+
+Theorem "rec9exer4"
+
+Definitions
+    Real A, B;
+    Real station;
+    Real x0;
+End.
+
+ProgramVariables
+    Real x, v, n, a, T, t;
+End.
+
+
+Problem
+  A>0 & B>0 & v=0 & x<station & n=1 &x0 = x
+  ->
+  [
+      {     
+          n := n+1;
+          t := 0;
+          a := *;
+          ?(a >= 0 & a <= A);
+          {T := *;}^@
+          {?T > 0;}^@
+          {
+              {x' = v, v' = a, t' = 1 & t <= T}
+              ++
+              {x' = v, v' = -B, t' = 1 & v >= 0}
+          }
+      }* @invariant(x0<station & n>=1 & A>0 & B>0 & station-x-v^2/B/2 >= (station-x0)/n^2)
+      ](x < station)
+End.
+
+Tactic "rec9exer4: Proof"
+implyR(1) ; loop("x0() < station()&n>=1&A()>0&B()>0&station()-x-v^2/B()/2>=(station()-x0())/n^2", 1) ; <(
+  QE,
+  unfold ; solve(1.0.1.0) ; solve(1.0.1.1) ; QE,
+  QE
+  )
+End.
+
+End.

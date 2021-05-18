@@ -1,0 +1,70 @@
+/**
+ * Running time (in minutes, estimate):
+ * Proved?(Y/N):
+ * KeYmaera X Version:
+ *
+ * Please do not put personally identifiable information in any file that you
+ * submit. Any resulting implicit bias can and will be used against your grade.
+ */
+
+Functions
+  Real A;      /* Robot's max acceleration */
+  Real B;      /* Robot's max braking */
+  Real T;      /* Time-trigger limit on evolution */
+
+  /* You can either decide to use a safety buffer between the center of the (non-moving)
+   * obstacle or to consider bounding circles around your robot and the
+   * obstacle.
+   */
+
+  Real buffer;   /* Required distance between center of robot and center of obstacle */
+  Real rogr;     /* Radius of bounding circle around obstacle shape */
+  Real r;        /* Radius of bounding circle around robot shape */
+End.
+
+ProgramVariables
+  Real x; /* Position of robot in x direction */
+  Real y; /* Position of robot in y direction */
+
+  Real dx;     /* Unit vector in direction of travel, x direction */
+  Real dy;     /* Unit vector in direction of travel, y direction */
+  Real trackr; /* Robot track radius */
+
+  Real v; /* Linear velocity of robot */
+  Real a; /* Linear acceleration of robot */
+
+  Real rogx; /* Position of center of obstacle in x direction */
+  Real rogy; /* Position of center of obstacle in y direction */
+
+  Real t; /* Time */
+
+  Real cx; /* Position of circle center in x direction */
+  Real cy; /* Position of circle center in y direction */
+End.
+
+Problem
+  (
+    buffer > 0 & rogr > 0 & r > 0 & A > 0 & B > 0 & buffer > rogr + r & dx^2+dy^2=1 & (x-cx)^2+(y-cy)^2=trackr^2 & (x-rogx)^2+(y-rogy)^2 > buffer^2
+  ) /* Initial conditions */
+  ->
+  [
+    {
+      /* Discrete control of robot and rogue-bots */
+      t := 0;
+      trackr := *;
+      ?trackr != 0;
+      cx := x-dy*trackr;
+      cy := y+dx*trackr;
+      ?(trackr > 0 & (cx-rogx)^2+(cy-rogy)^2 > (buffer + trackr)^2)
+      |
+      (trackr < 0 & (cx-rogx)^2+(cy-rogy)^2 > (buffer - trackr)^2)
+      ;
+      a := *;
+      ?a >= -B & a <= A;
+      {x' = dx*v, y' = dy*v, dx' = -v*dy/trackr, dy' = v*dx/trackr, v' = a, /* Differential Equations */
+       t' = 1
+       & t <= T & v >= 0
+      }
+    }*@invariant(dx^2+dy^2=1 & (x-rogx)^2+(y-rogy)^2 > buffer^2 & (x-cx)^2+(y-cy)^2=trackr^2) /* loop invariant */
+  ]((x-rogx)^2+(y-rogy)^2 > buffer^2) /* Safety condition */
+End.

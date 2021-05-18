@@ -1,0 +1,76 @@
+﻿/* Exported from KeYmaera X v4.9.3 */
+
+Theorem "L4Q1"
+/**
+ * Running time (in minutes, estimate):
+ * Proved?(Y/N):
+ * KeYmaera X Version:
+ *
+ * Please do not put personally identifiable information in any file that you
+ * submit. Any resulting implicit bias can and will be used against your grade.
+ */
+
+Functions
+  Real A;    /* Robot's maximum acceleration*/
+  Real B;    /* Robot's maximum braking */
+End.
+
+ProgramVariables
+  Real x; /* Position of robot in x direction */
+  Real y; /* Position of robot in y direction */
+
+  Real dx; /* Unit vector in direction of travel, x direction */
+  Real dy; /* Unit vector in direction of travel, y direction */
+
+  Real trackr; /* Robot track radius */
+
+  Real v; /* Linear velocity of robot */
+  Real a; /* Linear acceleration of robot */
+
+  Real cx; /* Position of circle center in x direction */
+  Real cy; /* Position of circle center in y direction */
+End.
+
+Problem
+  (A > 0 & B > 0 & dx^2+dy^2=1 & (x-cx)^2+(y-cy)^2=trackr^2)
+  ->
+  [
+    {
+      /* Control steering using trackr */
+      trackr := *;
+      ?trackr!=0;
+      /* Control acceleration (a) */
+      a := *;
+      ?a >= -B & a <= A;
+      /* cx and cy are coordinates of circle center */
+      /* This relation can be inducted by geometry, dx and dy represents cos and sin, by trackr we can get the position of center */
+      cx := x - dy*trackr;
+      cy := y + dx*trackr;
+      {x' = v*dx, y' = v*dy, dx' = -v*dy/trackr, dy' = v*dx/trackr, v' = a /* differential equations for this system. Make sure everything that changes continuously is included. */
+       & v >= 0
+      }
+    }*@invariant(dx^2+dy^2 = 1 & (x-cx)^2+(y-cy)^2=trackr^2)
+  ]((x-cx)^2+(y-cy)^2=trackr^2) /* Safety condition. */
+End.
+
+Tactic "L4Q1: Proof"
+implyR(1) ; loop("dx^2+dy^2=1&(x-cx)^2+(y-cy)^2=trackr^2", 1) ; <(
+  QE,
+  QE,
+  unfold ; dC("x-dy*trackr=cx&y+dx*trackr=cy", 1) ; <(
+    dC("dx^2+dy^2=1", 1) ; <(
+      dW(1) ; QE,
+      dIRule(1) ; <(
+        QE,
+        unfold ; QE
+        )
+      ),
+    dIRule(1) ; <(
+      QE,
+      unfold ; QE
+      )
+    )
+  )
+End.
+
+End.
