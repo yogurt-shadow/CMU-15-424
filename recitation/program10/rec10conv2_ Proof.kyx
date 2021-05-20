@@ -1,0 +1,23 @@
+﻿/* Exported from KeYmaera X v4.9.3 */
+
+Theorem "rec10conv2"
+
+ProgramVariables
+  Real y;
+  Real x;
+End.
+
+Problem
+  < {y:=y-1; x:=x+1;}*>x >= y
+
+End.
+
+Tactic "rec10conv2: Proof"
+con("v", "y-x<=v", 1) ; <(
+  QE,
+  QE,
+  unfold ; QE
+  )
+End.
+
+End.
