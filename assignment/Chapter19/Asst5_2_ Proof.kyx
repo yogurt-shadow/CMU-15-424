@@ -1,0 +1,26 @@
+﻿/* Exported from KeYmaera X v4.9.3 */
+
+Theorem "Asst5_2"
+
+Description "Loop proof using convergence".
+
+Problem
+  x >= 1 & v > 0
+  ->
+  <
+  {
+    x := x - 1;
+    {x' = v}
+  }*
+  >(x > 10)
+End.
+
+Tactic "Asst5_2: Proof"
+implyR(1) ; con("k", "10-x < k", 1) ; <(
+  QE,
+  QE,
+  composed(1) ; assignd(1) ; solve(1) ; QE
+  )
+End.
+
+End.
