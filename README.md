@@ -2,7 +2,7 @@
 
 Logical Foundations of Cyber-Physical Systems (Fa'19)
 
-[Course website for Spring 2019](http://www.symbolaris.com/course/lfcps19-schedule.html)
+[Course website for Fall 2019](http://www.symbolaris.com/course/lfcps19-schedule.html)
 
 [Visualizer and debugging for keymaxra X models of CPS (work from CMU students)](https://github.com/dj-jazzyjaz/kerr-cheng-visualizer) :+1:
 
@@ -12,6 +12,8 @@ My self progress:
 + Update to Chapter4.  2021/3/18
 + Update to Chapter5.  2021/3/20
 + Update to Chapter6. (Lab1)  2021/3/28
+  * Lab1 contains a simple interpreter for FOL formulas. Both cpp and java versions are provided!
+
 + Update to Chapter7.  2021/3/30
 + Update to Chapter8.  2021/4/2
 + Update to Chapter9.  2021/4/5
