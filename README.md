@@ -1,5 +1,12 @@
 # CMU-15-424
+
 Logical Foundations of Cyber-Physical Systems (Fa'19)
+
+[Course website for Spring 2019](http://www.symbolaris.com/course/lfcps19-schedule.html)
+
+[Visualizer and debugging for keymaxra X models of CPS (work from CMU students)](https://github.com/dj-jazzyjaz/kerr-cheng-visualizer) :+1:
+
+My self progress:
 + Update to Chapter2.  2021/3/13
 + Update to Chapter3.  2021/3/16
 + Update to Chapter4.  2021/3/18
